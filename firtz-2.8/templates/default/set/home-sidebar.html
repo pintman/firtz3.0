@@ -1,0 +1,196 @@
+<!--breadcrumb-->
+<div id="navline-white">
+    <div class="uk-container uk-text-white">
+        <a class="bc-link" href="{{@BASEURL}}">{{@feedattr.title}}</a> > {{@dict_navi_allepisodes}}
+    </div>
+</div>
+
+<!--home-->
+<div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true"
+     style="box-sizing: border-box;">
+    <div class="uk-container">
+        <div class="uk-grid" uk-grid="">
+            <div class="uk-width-expand@m uk-first-column">
+                <div class="uk-child-width-1-1@m uk-grid uk-grid-stack" uk-grid="">
+                    <div class="uk-first-column">
+                        <repeat group="@items" value="{{@item}}">
+                            <!-- episode article: {{@item.slug}} -->
+                            <article class="uk-article has-post-thumbnail"
+                                     typeof="Article">
+
+                                <!-- episode metadata -->
+                                <meta property="name" content="{{@item.title}}">
+                                <meta property="author" typeof="Person" content="{{@feedattr.author}}">
+                                <meta class="uk-margin-remove-adjacent" property="datePublished"
+                                      content="{{@item.date}}">
+
+                                <check if="{{@item.banner != ''}}">
+                                    <check if="{{@templatevars.pwp != 'down'}}">
+                                        <!-- episode banner -->
+                                        <div class="uk-inline-clip uk-transition-toggle uk-margin-large-top uk-margin-large-bottom">
+                                            <a href="{{@BASEURL}}{{@feedattr.slug}}/show/{{@item.slug}}" title="{{@item.slug}}" name="{{@item.slug}}">
+                                                <img width="1200"
+                                                     height="200"
+                                                     src="{{@item.banner}}"
+                                                     class="attachment-post-thumbnail size-post-thumbnail wp-post-image"
+                                                     alt="Episode {{@item.slug}}"
+                                                     property="url"></a>
+                                            <check if="{{@item.bannerLicense != ''}}">
+                                                <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
+                                                    <p>
+                                                        {{@dict_license}}: {{@item.bannerLicense}}<check if="{{@item.bannerURL != ''}}">,<a target="_blank" href="{{@item.bannerURL}}"> {{@item.bannerPage}}</a></check>
+                                                    </p>
+                                                </div>
+                                            </check>
+                                        </div>
+                                    </check>
+                                </check>
+
+                                <!-- produces by -->
+                                <div class="uk-margin-medium-bottom uk-container uk-container-small uk-text-center">
+                                    <h2 class="uk-article-title uk-margin-remove-top">
+                                        <a href="<check if="{{@singlepage==false}}">{{@BASEURL}}{{@feedattr.slug}}/show/{{@item.slug}}</check>" title="{{@item.slug}}" name="{{@item.slug}}">{{@item.title}}</a>
+                                    </h2>
+                                    <p class="uk-article-meta">
+                                        {{@dict_publicBy}}<a href="{{@BASEURL}}">{{@feedattr.author}}</a> am <time
+                                            datetime="{{date ('Y-d-m', strtotime(@item.date))}}T{{date ('H:m:s+00:00',
+                                        strtotime(@item.date))}}">{{date ('d M. Y', strtotime(@item.date))}}</time>.
+                                    </p>
+                                </div>
+
+                                <!-- episode overview -->
+                                <div class="uk-container uk-container-small uk-margin-large-bottom">
+                                    <check if="{{@templatevars.pwp == 'down' or @templatevars.pwp == 'on'}}">
+                                        <p></p>
+                                        <check if="{{@item.banner != '' and @templatevars.pwp != 'on'}}">
+                                            <!-- episode banner -->
+                                            <div class="uk-inline-clip uk-transition-toggle uk-margin-bottom">
+                                                <a href="{{@BASEURL}}{{@feedattr.slug}}/show/{{@item.slug}}"
+                                                   title="{{@item.slug}} - {{@item.title}}"
+                                                   name="{{@item.slug}}">
+                                                    <img width="1200"
+                                                         height="200"
+                                                         src="{{@item.banner}}"
+                                                         class="attachment-post-thumbnail size-post-thumbnail"
+                                                         alt="Episode {{@item.slug}}"
+                                                         property="url"></a>
+                                                <check if="{{@templatevars.home_pwp_position == 'out'}}">
+                                                    <check if="{{@item.bannerLicense != ''}}">
+                                                        <div class="uk-transition-slide-top uk-position-top uk-overlay uk-overlay-default">
+                                                            <p>
+                                                                <small>{{@dict_license}}: {{@item.bannerLicense}}<check if="{{@item.bannerURL != ''}}">,<a target="_blank" href="{{@item.bannerURL}}"> {{@item.bannerPage}}</a></check></small>
+                                                            </p>
+                                                        </div>
+                                                    </check>
+                                                </check>
+                                                <check if="{{@templatevars.home_pwp_position == 'in'}}">
+                                                    <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay" style="background: {{ @templatevars.color }}">
+                                                        <center>
+                                                            <!--article-player-->
+                                                            <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                                                <repeat group="{{glob(@tpath.'/player/*.html')}}" value="{{@template}}">
+                                                                    <include href="{{'player/'.basename(@template)}}"/>
+                                                                </repeat>
+                                                            </repeat>
+                                                        </center>
+                                                    </div>
+                                                </check>
+                                            </div>
+                                        </check>
+
+                                        <div style="background: {{ @templatevars.color }}; margin-top: -30px;" class="uk-margin-bottom">
+                                            <div style="padding-bottom: 10px;"></div>
+                                            <center>
+                                                <!--article-player-->
+                                                <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                                    <repeat group="{{glob(@tpath.'/player/*.html')}}" value="{{@template}}">
+                                                        <include href="{{'player/'.basename(@template)}}"/>
+                                                    </repeat>
+                                                </repeat>
+                                            </center>
+                                            <div style="padding-bottom: 10px;"></div>
+                                        </div>
+
+                                        <check if="{{(trim(@item.subtitle)!='')}}">
+                                            <div property="text">
+                                                <p><b>{{@item.subtitle | raw}}</b></p>
+                                            </div>
+                                        </check>
+                                    </check>
+
+                                    <div property="text">
+                                        <check if="{{(trim(@item.subtitle)!='' and @templatevars.pwp == 'off')}}">
+                                            <div property="text">
+                                                <p class="uk-text-center"><b>{{@item.subtitle | raw}}</b></p>
+                                            </div>
+                                        </check>
+                                        <div class="uk-column-1-2@m">
+                                            <check if="{{(trim(@item.summary)!='')}}">{{@item.summary | raw}}</check>
+                                        </div>
+                                    </div>
+
+                                    <p class="uk-text-center uk-margin-medium">
+                                        <a class="uk-button uk-button-secondary"
+                                           href="{{ @BASEURL }}{{ @feedattr.slug }}/show/{{ @item.slug }}"><i
+                                                uk-icon="icon: play-circle"></i> {{ @dict_readmore }}</a>
+                                    </p>
+                                </div>
+                            </article>
+                        </repeat>
+                    </div>
+                </div>
+            </div>
+            <include href="set/sidebar.html"/>
+        </div>
+    </div>
+</div>
+<check if="{{@page!=0}}">
+    <!--pagination-->
+    <div id="tm-pagination" class="tm-main uk-section uk-section-muted"
+         uk-height-viewport="expand: true"
+         style="box-sizing: border-box;">
+        <div class="uk-container">
+            <div class="uk-grid uk-grid-large uk-grid-divider uk-grid-stack" uk-grid="">
+                <div class="uk-width-expand@m uk-first-column">
+                    <ul class="uk-pagination uk-margin-large uk-flex-center">
+                        <check if="{{@page>1}}">
+                            <true>
+                                <li class="uk-active">
+                                    <a href="{{@BASEURL}}{{@feedattr.slug}}/show/pager/{{@page-1}}">
+                                        <i uk-icon="icon: chevron-left"></i>
+                                        <span class="page-numbers current">
+                                            {{@dict_newer}}
+                                        </span>
+                                    </a>
+                                </li>
+                            </true>
+                            <false>
+                                <li class="uk-text-muted">
+                                    {{@dict_newer}}
+                                </li>
+                            </false>
+                        </check>
+                        <check if="{{@page<@maxpage}}">
+                            <true>
+                                <li class="uk-active">
+                                    <a class="page-numbers"
+                                       href="{{@BASEURL}}{{@feedattr.slug}}/show/pager/{{@page+1}}">
+                                        <span class="page-numbers current">
+                                            {{@dict_older}}
+                                        </span>
+                                        <i uk-icon="icon: chevron-right"></i>
+                                    </a>
+                                </li>
+                            </true>
+                            <false>
+                                <li class="uk-text-muted">
+                                    {{@dict_older}}
+                                </li>
+                            </false>
+                        </check>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</check>

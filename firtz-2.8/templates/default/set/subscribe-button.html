@@ -1,0 +1,31 @@
+<!--podlove-sub-button-->
+<script type="text/javascript">
+    window.podcastData = {
+        "title": {{json_encode(@feedattr.title) | raw}},
+        "subtitle": {{json_encode(@feedattr.description) | raw}},
+        "description": {{json_encode(@feedattr.summary) | raw}},
+        "cover": "{{@feedattr.image}}",
+        "feeds": [ <repeat group="@feedattr.audioformats" value="{{@format}}">
+            {
+                "type":"{{explode('/',@mimetypes[@format])[0]}}",
+                "format": "{{@format}}",
+                "url": "{{@feedattr.baserel}}{{@format}}{{@extxml}}",
+            },</repeat>
+        ]
+    }
+</script>
+<script class="podlove-subscribe-button"
+        src="https://cdn.podlove.org/subscribe-button/javascripts/app.js"
+        data-format="cover"
+        data-language="de"
+        data-size="big"
+        data-json-data="podcastData"
+        data-colors="{{@templatevars.color}};{{@templatevars.dark}};{{@templatevars.color}};;;;#fff;{{@templatevars.color}};; "
+        data-buttonid="psb-{{@feedattr.slug}}"
+        data-style="{{@templatevars.subscribe}}"></script>
+<style>
+    #psb-{{ @feedattr.slug }} {
+        background: #fff;
+    }
+</style>
+<!--//podlove-sub-button-->

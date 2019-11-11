@@ -1,0 +1,101 @@
+<div class="tm-header-mobile uk-hidden@m">
+    <nav class="uk-navbar-container <check if=" {{@templatevars.navicolor== 'white'}}">uk-navbar-white uk-navbar-transparent</check> uk-navbar" uk-navbar="">
+        <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="{{@BASEURL}}">
+                <check if="{{ @templatevars.logoType == 'poster' }}">
+                    <true>
+                        <img src="{{@BASEURL}}{{@TptPath}}poster.png"
+                             style="width: 76px;"
+                             class="uk-responsive-height"
+                             alt="{{@feedattr.title}}">
+                    </true>
+                    <false>
+                        <img src="{{@BASEURL}}{{@TptPath}}logo.png"
+                             style='width:{{@templatevars.logoSize}}'
+                             class="uk-responsive-height"
+                             alt="{{@feedattr.title}}">
+                    </false>
+                </check>
+            </a>
+        </div>
+        <div class="uk-navbar-right">
+            <a class="uk-navbar-toggle" href="#tm-mobile" uk-toggle="">
+                <div uk-navbar-toggle-icon="" class="uk-navbar-toggle-icon uk-icon"></div>
+            </a>
+        </div>
+    </nav>
+    <!-- mobile-modal -->
+    <div id="tm-mobile" class="uk-modal-full uk-modal" uk-modal="">
+        <div class="uk-modal-dialog uk-modal-body uk-text-center uk-flex"
+             uk-height-viewport=""
+             style="box-sizing: border-box; min-height: 100vh; height: 100vh;">
+            <button class="uk-modal-close-full uk-close uk-icon"
+                    type="button"
+                    uk-close=""></button>
+            <div class="uk-margin-auto-vertical uk-width-1-1">
+                <div class="uk-child-width-1-1 uk-grid" uk-grid="">
+                    <div>
+                        <div class="uk-panel">
+                            <ul class="uk-nav uk-nav-primary uk-nav-center">
+                                <li <check if="{{@pagename == ''}}">class="uk-active"</check>>
+                                    <a href="{{@BASEURL}}">Home</a>
+                                </li>
+
+                                <set pagearr="{{ array() }}"/>
+                                <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                    <repeat group="{{glob(@tpath.'/pages/*.html')}}" value="{{@template}}">
+                                        <check if="{{!in_array(basename(@template),@pagearr)}}">
+                                            <li>
+                                                <a href="{{@BASEURL}}{{@feedhome}}{{@feedattr.slug}}/show/page/{{basename(@template,'.html')}}{{@exthtml}}">{{basename(@template,'.html')}}</a>
+                                            </li>
+                                            <?php /* avoid multiple inclusion  */ ?>
+                                            <set pagearr="{{array_merge(@pagearr,array(basename(@template)))}}"/>
+                                        </check>
+                                    </repeat>
+                                </repeat>
+
+                                <!-- podcast subpages -->
+                                <set pagearr="{{ array() }}"/>
+                                <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                    <repeat group="{{glob(@tpath.'/pages/*',GLOB_ONLYDIR)}}" value="{{@dir}}">
+                                        <check if="{{basename(@dir)}} != 'podcast' ">
+                                            <check if="{{!in_array(basename(@dir),@pagearr)}}">
+                                                <li>
+                                                    <a href="#">{{basename(@dir)}}</a>
+                                                    <div class="uk-navbar-dropdown">
+                                                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                                                            <repeat group="{{glob(@tpath.'/pages/'.basename(@dir).'/*.html')}}"
+                                                                    value="{{@template}}">
+                                                                <li>
+                                                                    <a href="{{@BASEURL}}{{@feedhome}}{{@feedattr.slug}}/show/page/{{basename(@dir)}}/{{basename(@template,'.html')}}{{@exthtml}}">{{basename(@template,'.html')}}</a>
+                                                                </li>
+                                                            </repeat>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+
+                                                <?php /* avoid multiple inclusion  */ ?>
+                                                <set pagearr="{{array_merge(@pagearr,array(basename(@dir)))}}"/>
+                                            </check>
+                                        </check>
+                                    </repeat>
+                                </repeat>
+                            </ul>
+                        </div>
+                    </div>
+                    <check if="{{@templatevars.navisearch == 'on'}}">
+                        <div>
+                            <div class="uk-panel widget-search" id="widget-search-1">
+                                <form id="search-mobile" action="{{@BASEURL}}" method="get" role="search"
+                                      class="uk-search uk-search-default">
+                                    <span uk-search-icon="" class="uk-search-icon uk-icon"></span>
+                                    <input name="s" placeholder="Suche&nbsp;…" type="search" class="uk-search-input">
+                                </form>
+                            </div>
+                        </div>
+                    </check>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

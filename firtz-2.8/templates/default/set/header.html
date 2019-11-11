@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="{{ substr(@feedattr.language,0,2) }}" dir="ltr">
+<head>
+    <!-- head meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- page title -->
+    <check if="{{!@showpage}}">
+        <true>
+            <check if="{{@singlepage==false}}">
+                <title>{{@feedattr.title}}</title>
+            </check>
+            <check if="{{@singlepage==true}}">
+                <title><repeat group="@items" value="{{@item}}">{{@feedattr.title}} | {{@item.title}}</repeat> | {{@feedattr.title}}</title>
+            </check>
+        </true>
+        <false>
+            <title>{{@feedattr.title}} | {{@pagename}}</title>
+        </false>
+    </check>
+    <!-- page meta -->
+    <meta name="description" content="{{@feedattr.description}}"/>
+    <meta name="author" content="{{@feedattr.author | raw}}"/>
+    <repeat group="@feedattr.audioformats" value="{{@format}}">
+        <link rel="alternate" type="application/rss+xml" title="{{@feedattr.title}} ({{@format}} Audio)" href="{{@feedattr.baserel}}{{@format}}{{@extxml}}" />
+    </repeat>
+    <check if="{{@feedattr.image}}">
+        <meta property="og:image" content="{{@feedattr.image}}"/>
+    </check>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<check if="{{!@showpage}}"><true>{{@og.title}}</true><false>{{basename(@showpage,'.html')}}</false></check>"/>
+    <meta property="og:url" content="<check if="{{!@showpage}}"><true>{{@og.url}}</true><false>{{@BASEURL}}{{@feedattr.slug}}/show/page/{{basename(@showpage)}}</false></check>"/>
+    <meta property="og:site_name" content="{{@feedattr.title}}"/>
+    <!-- audio meta -->
+    <check if="{{@og.audio}}">
+        <meta property="og:{{@og.audio.typename}}" content="{{@og.audio.url}}"/>
+        <meta propertyp="og:{{@og.audio.typename}}:type" content="{{@og.audio.type}}"/>
+    </check>
+    <!-- icons meta -->
+    <check if="{{@feedattr.image}}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{@favicon_apple}}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{@favicon_apple}}">
+        <link rel="apple-touch-icon-precomposed" href="{{@favicon_apple}}">
+        <link rel="shortcut icon" href="{{@BASEURL}}{{@favicon}}">
+    </check>
+    <!-- feed meta -->
+    <repeat group="@feedattr.audioformats" value="{{@format}}">
+        <link rel="alternate" type="application/rss+xml" title="Podcast Feed: {{@feedattr.title}} {{@format}}" href="{{@feedattr.baserel}}{{@format}}{{@extxml}}" />
+    </repeat>
+    <!-- css -->
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'qx3/*.css')}}" value="{{@template}}">
+            <style id="{{basename(@template)}}"><include href="{{'qx3/'.basename(@template)}}"/></style>
+        </repeat>
+    </repeat>
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'css/*.css')}}" value="{{@template}}">
+            <link href="{{@BASEURL}}{{'templates/default/css/'.basename(@template)}}" rel="stylesheet" media="screen" type="text/css" />
+        </repeat>
+    </repeat>
+    <style>
+        @font-face {
+            font-family: Fira Sans;
+            src: url({{@BASEURL}}ext/webplayer/fonts/FiraSans-Light.eot?fa487cca520cc7f78a271cb182a29c03) format("eot"),
+            url({{@BASEURL}}ext/webplayer/fonts/FiraSans-Light.woff?620af15165ec011b7982f308eb48c34e) format("woff"),
+            url({{@BASEURL}}ext/webplayer/fonts/FiraSans-Light.woff2?315ad98e0cb4208b2a002dad0f5b92e8) format("woff2");
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: Fira Sans;
+            src: url({{@BASEURL}}ext/webplayer/fonts/FiraSans-Regular.eot?bfcf38c3c6170588e22046f671c26fc9) format("eot"),
+            url({{@BASEURL}}ext/webplayer/fonts/FiraSans-Regular.woff?abbc4d42c352d94dd0a00856769ebc5a) format("woff"),
+            url({{@BASEURL}}ext/webplayer/fonts/FiraSans-Regular.woff2?26f9ff8eb3877040b5f2f0e36759192f) format("woff2");
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: Fira Mono;
+            src: url({{@BASEURL}}ext/webplayer/fonts/FiraMono-Regular.eot?8d876c180eb01a79be6d1d8bc121919f) format("eot"),
+            url({{@BASEURL}}ext/webplayer/fonts/FiraMono-Regular.woff?f25e0dfc5b508f34f63724d7ff607384) format("woff"),
+            url({{@BASEURL}}ext/webplayer/fonts/FiraMono-Regular.woff2?fe92bd266274aa44e22e48ca0317ff98) format("woff2");
+            font-weight: 500;
+        }
+    </style>
+
+    <!-- js -->
+    <script src="{{@BASEURL}}templates/default/qx3/jquery.js"></script>
+    <script src="{{@BASEURL}}templates/default/qx3/qx3.js"></script>
+    <script src="{{@BASEURL}}templates/default/qx3/qx3-icons.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'/head/*.html')}}" value="{{@template}}">
+            <!-- hook: {{'head/'.basename(@template)}} -->
+            <include href="{{'head/'.basename(@template)}}"/>
+        </repeat>
+    </repeat>
+</head>
+<body>

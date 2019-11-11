@@ -1,0 +1,15 @@
+<include href="set/header.html"/>
+<check if="{{ @templatevars.layout =='box' }}">
+    <true>
+        <div class="uk-offcanvas-content">
+            <div class="tm-page">
+                <div class="uk-margin-auto">
+                    <include href="container.html"/>
+                </div>
+            </div>
+        </div>
+    </true>
+    <false>
+        <include href="container.html"/>
+    </false>
+</check>

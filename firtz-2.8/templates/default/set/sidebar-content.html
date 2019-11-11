@@ -1,0 +1,91 @@
+<div class="uk-child-width-1-1 uk-grid uk-grid-stack" uk-grid="">
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'/sidebar_header/*.html')}}" value="{{@template}}">
+            <!-- hook sidebar header: {{'sidebar_header/'.basename(@template)}} -->
+            <include href="{{'sidebar_header/'.basename(@template)}}"/>
+        </repeat>
+    </repeat>
+
+    <!-- sidebare: about -->
+    <div class="uk-first-column">
+        <div class="uk-panel">
+            <h4 class="uk-heading-divider"><span uk-icon="icon: play-circle; ratio: 1.4"></span>
+                {{ @dict_sb_about_title }}</h4>
+            <div class="uk-margin">
+                {{@feedattr.description}}
+            </div>
+
+            <div class="uk-box-shadow-small uk-background-muted uk-padding">
+                <include href="set/subscribe-button.html"/>
+            </div>
+
+            <div class="uk-margin">
+                <small>{{@feedattr.summary}}</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- sidebar: more infos and links -->
+    <div class="uk-grid-margin uk-dark">
+        <div class="uk-panel uk-box-shadow-small uk-padding uk-background-muted">
+            <h3 class="uk-h5 uk-heading-line">
+                <span>{{@dict_sb_more}}</span>
+            </h3>
+            <ul>
+                <set pagearr="{{ array() }}"/>
+                <repeat group="{{ explode(',',@UI) }}" value="{{@tpath}}">
+                    <repeat group="{{glob(@tpath.'/pages/*',GLOB_ONLYDIR)}}" value="{{@dir}}">
+                        <check if="{{basename(@dir)}} == 'podcast' ">
+                            <check if="{{!in_array(basename(@dir),@pagearr)}}">
+                                <repeat group="{{glob(@tpath.'/pages/'.basename(@dir).'/*.html')}}"
+                                        value="{{@template}}">
+                                    <li>
+                                        <a href="{{@BASEURL}}{{@feedattr.slug}}/show/page/{{basename(@dir)}}/{{basename(@template,'.html')}}{{@exthtml}}">{{basename(@template,'.html')}}</a>
+                                    </li>
+                                </repeat>
+                                <set pagearr="{{array_merge(@pagearr,array(basename(@dir)))}}"/>
+                            </check>
+                        </check>
+                    </repeat>
+                </repeat>
+            </ul>
+
+            <check if="{{@feedattr.licenseimage}}">
+                <true>
+                    <div class="uk-text-center">
+                        <small>{{ @dict_sb_license }} <a
+                                href="{{ @feedattr.licenseurl }}">{{ @feedattr.licensename }}</a> {{ @dict_license }}.
+                        </small>
+                    </div>
+                    <div class="uk-text-center uk-margin-small-top">
+                        <a href="{{ @feedattr.licenseurl }}"><img
+                                src="{{ @feedattr.licenseimage }}"
+                                title="{{ @feedattr.licensename }}"></a>
+                    </div>
+                </true>
+                <false>
+                    <check if="{{ @feedattr.licensename }}">
+                        <a href="{{ @feedattr.licenseurl }}">{{ @feedattr.licensename }}</a>
+                    </check>
+                </false>
+            </check>
+        </div>
+    </div>
+
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'/sidebar/*.html')}}" value="{{@template}}">
+            <!-- hook sidebar: {{'sidebar/'.basename(@template)}} -->
+            <include href="{{'sidebar/'.basename(@template)}}"/>
+        </repeat>
+    </repeat>
+
+
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'/sidebar_footer/*.html')}}" value="{{@template}}">
+            <!-- hook sidebar footer: {{'sidebar_footer/'.basename(@template)}} -->
+            <include href="{{'sidebar_footer/'.basename(@template)}}"/>
+        </repeat>
+    </repeat>
+
+
+</div>

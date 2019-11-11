@@ -1,0 +1,26 @@
+
+<include href="set/navi.html"/>
+<include href="set/mobile-navi.html"/>
+<check if="{{!@showpage}}">
+    <true>
+        <!--home-->
+        <check if="{{@singlepage==false}}">
+            <check if="{{@templatevars.home == 'standard'}}">
+                <include href="set/home.html"/>
+            </check>
+            <check if="{{@templatevars.home == 'sidebar'}}">
+                <include href="set/home-sidebar.html"/>
+            </check>
+        </check>
+        <!--episode-->
+        <check if="{{@singlepage==true}}">
+            <include href="set/episode.html"/>
+        </check>
+    </true>
+    <false>
+        <!--page-->
+        <include href="set/page.html"/>
+    </false>
+</check>
+<!--footer-->
+<include href="set/footer.html"/>

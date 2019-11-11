@@ -1,0 +1,87 @@
+<h2>Episoden Archiv</h2>
+<div property="text">
+    <p>
+        Hier findest Du alle Episoden des {{@feedattr.title}}.
+    </p>
+</div>
+
+<h4 class="uk-text-muted uk-text-bold uk-margin-remove">Das Archiv</h4>
+<div property="text">
+    <check if="{{@feedattr.author}}">
+        <p class="uk-text-muted">
+            Bisher wurden <b>{{sizeof(@items)}}</b>
+            <check if="{{sizeof(@items)}}>1">
+                <true>Episoden</true>
+                <false> Episode</false>
+            </check>
+            produziert und veröffentlicht.<br>
+        </p>
+    </check>
+</div>
+
+
+<table class="uk-table uk-table-striped">
+    <thead>
+    <tr>
+        <th>Cover</th>
+        <th>Episoden</th>
+    </tr>
+    </thead>
+    <tbody>
+    <repeat group="@items" value="{{@item}}">
+        <tr>
+            <td class="uk-width-1-3">
+                <a class="uk-text-middle" href="/{{@feedattr.slug}}/show/{{@item.slug}}"
+                   name="{{@item.slug}}">
+                    <img class="media-object pull-left" src="{{@item.image}}"
+                         style="width:200px;">
+                </a>
+            </td>
+            <td class="uk-width-auto">
+                <h5 class="uk-h4 uk-margin-remove-bottom"><a class="uk-text-middle"
+                      href="/{{@feedattr.slug}}/show/{{@item.slug}}"
+                      name="{{@item.slug}}">{{@item.title}}</a></h5></br>
+                <b>{{@item.subtitle}}</b><br>
+                <p>
+                    {{@item.summary}}<br>
+                </p>
+                <check if="{{isset(@item.contributors_data)}}">
+                    <repeat group="{{@item.contributors_data}}" value="{{@con}}"
+                            key="{{@nick}}">
+                        <check if="{{isset(@con.image)}}">
+                            <true>
+                                <img style="width:35px;"
+                                     class="uk-border-circle uk-box-shadow-small"
+                                     alt="{{@con.name}}"
+                                     src="{{@con.image}}">
+                            </true>
+                        </check>
+                    </repeat>
+                </check>
+
+                <div class="uk-float-right uk-margin-small-right">
+                    <small >
+                        Vom: {{@dict_pubdate,strtotime(@item.pubDate) | format}}
+                    </small>
+
+                    <check if="{{@item.duration}}">
+                        |
+                        <small>
+                            {{@dict_duration}}: {{@item.duration}}
+                        </small>
+                    </check>
+                </div>
+
+
+
+                <br>
+
+
+
+            </td>
+        </tr>
+    </repeat>
+    </tbody>
+</table>
+
+

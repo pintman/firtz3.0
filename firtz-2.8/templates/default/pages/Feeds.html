@@ -1,0 +1,51 @@
+<h2>{{@feedattr.title}} Abonnieren</h2>
+
+<h4 class="uk-text-muted uk-text-bold">Über diesen Podcast</h4>
+<div property="text">
+    <p>{{@feedattr.description}}</p>
+    <p>{{@feedattr.summary}}</p>
+</div>
+
+<h4 class="uk-text-muted uk-text-bold">Kostenlos abonnieren</h4>
+<div property="text">
+    <p>
+        Folgende Feeds dieses Podcasts können abonniert werden:
+    </p>
+    <form class="uk-form-stacked">
+        <repeat group="@feedattr.audioformats" value="{{@format}}">
+            <div class="uk-margin">
+                <label class="uk-form-label uk-text-bold"
+                       for="form-stacked-text">
+                    Feed: <a href="{{@feedattr.baserel}}{{@format}}{{@extxml}}">
+                    {{@format}} ({{explode('/',@mimetypes[@format])[0]}})</a></label>
+                <div class="uk-form-controls">
+                    <a class="uk-margin-small-right"
+                       href="{{@feedattr.baserel}}{{@format}}{{@extxml}}"><i
+                            class="uk-icon-button"
+                            uk-icon="icon: rss"></i></a>
+                    <input class="uk-input uk-text-muted uk-form-width-large"
+                           id="form-stacked-text"
+                           field="{{@format}}"
+                           type="text"
+                           placeholder="{{@format}}"
+                           value="{{@feedattr.baserel}}{{@format}}{{@extxml}}">
+                </div>
+            </div>
+        </repeat>
+    </form>
+</div>
+
+<h4 class="uk-text-muted uk-text-bold">Infos und mehr</h4>
+<div property="text">
+    <p>
+        Du hast noch Fragen oder möchtest dich beteiligen? Dann melde dich bei uns.
+        <br>
+        Wir freuen uns über dein Feedback!
+    </p>
+    <p>
+        Folge und findest uns auf direkt auf
+        <check if="{{@feedattr.twitter}}">
+            Twitter: <a href="https://twitter.com/{{@feedattr.twitter}}">@{{@feedattr.twitter}}</a>
+        </check>
+    </p>
+</div>

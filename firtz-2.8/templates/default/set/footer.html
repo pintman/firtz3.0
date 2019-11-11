@@ -1,0 +1,39 @@
+<repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+    <repeat group="{{glob(@tpath.'/footer/*.html')}}" value="{{@template}}">
+        <!-- hook: {{'footer/'.basename(@template)}} -->
+        <include href="{{'footer/'.basename(@template)}}"/>
+    </repeat>
+</repeat>
+
+
+<div class="uk-section uk-section-small uk-footer-line uk-light">
+    <div class="uk-container">
+        <div class="uk-flex-middle uk-grid-margin uk-grid"
+             uk-grid="">
+            <div class="uk-width-expand@s">
+                <div class="uk-margin uk-text-left@s uk-text-center uk-scrollspy-inview">
+                    &copy; Copyright {{date('Y')}} by {{ @feedattr.title }}
+                </div>
+            </div>
+            <div class="uk-width-expand@s">
+                <div class="uk-margin uk-text-right@s uk-text-center uk-scrollspy-inview">
+                    <small>
+                        <a href="http://firtz.org">firtz</a> by <a href="http://eazy-living.de">Christian Bednarek</a>
+                        |
+                        <a href="">QuorX III</a> by <a href="http://michael.mccouman.de">Michael McCouman Jr.</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+    <repeat group="{{glob(@tpath.'/foot/*.html')}}" value="{{@template}}">
+        <!-- hook: {{'foot/'.basename(@template)}} -->
+        <include href="{{'foot/'.basename(@template)}}"/>
+    </repeat>
+</repeat>
+</body>
+</html>
