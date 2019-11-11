@@ -2,7 +2,7 @@
 
 
 *firtz podcast publisher*  
-*Version 2.1*
+*Version 2.8 Alpha*
 
 ## Über
 
