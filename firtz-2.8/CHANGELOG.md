@@ -1,5 +1,9 @@
 Changelog:
 
+RC 3.0 
+- i.A.
+
+
 2.9 Extensions and QuorX 3 changes
 - fixed PHP 7.2 and 7.3 changes (string to array)
 - extension: disqus 
