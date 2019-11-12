@@ -1,0 +1,461 @@
+<!-- breadcrumb -->
+<div id="navline-white">
+    <repeat group="@items" value="{{@item}}">
+        <div class="uk-container uk-text-white">
+            <a class="bc-link" href="{{@BASEURL}}">{{@feedattr.title}}</a> > {{@dict_navi_episode}}: <a
+                class="bc-link" href="{{@BASEURL}}{{@feedattr.slug}}/show/{{@item.slug}}">{{@item.slug}} /
+            {{@item.title}}</a>
+        </div>
+    </repeat>
+</div>
+
+
+<div class="uk-section-default uk-section">
+    <div class="uk-container">
+        <div class="uk-grid-margin uk-grid" uk-grid="">
+            <!-- episode article: {{@item.slug}} -->
+            <repeat group="@items" value="{{@item}}">
+                <div class="uk-width-3-4@m uk-first-column">
+                    <article class="uk-article status-publish format-standard uk-background-default"
+                             typeof="Article">
+
+                        <!-- episode metadata -->
+                        <meta property="name" content="{{@item.title}}">
+                        <meta property="author" typeof="Person" content="{{@feedattr.author}}">
+                        <meta class="uk-margin-remove-adjacent" property="datePublished"
+                              content="{{@item.date}}">
+
+                        <check if="{{@item.banner != ''}}">
+                            <!-- episode banner -->
+                            <div class="uk-inline-clip uk-transition-toggle uk-margin-large-bottom">
+                                <img width="1200"
+                                     height="200"
+                                     src="{{@item.banner}}"
+                                     class="attachment-post-thumbnail size-post-thumbnail"
+                                     alt="Episode {{@item.slug}}"
+                                     property="url">
+                                <check if="{{@item.bannerLicense != ''}}">
+                                    <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
+                                        <p>
+                                            {{@dict_license}}: {{@item.bannerLicense}}<check if="{{@item.bannerURL != ''}}">,<a target="_blank" href="{{@item.bannerURL}}"> {{@item.bannerPage}}</a></check>
+                                        </p>
+                                    </div>
+                                </check>
+                            </div>
+                        </check>
+
+                        <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                            <repeat group="{{glob(@tpath.'/episode-header/*.html')}}" value="{{@template}}">
+                                <!-- hook: {{'episode-header/'.basename(@template)}} -->
+                                <include href="{{'episode-header/'.basename(@template)}}"/>
+                            </repeat>
+                        </repeat>
+
+                        <!-- produces by -->
+                        <div class="uk-container uk-container-small uk-position-relative uk-background-default uk-text-center">
+                            <h2 class="uk-article-title uk-margin-remove-bottom">{{@item.title}}</h2>
+                            <p class="uk-article-meta uk-padding-small uk-padding-remove-top uk-padding-remove-bottom">
+                                {{@dict_publicBy}} <a href="{{@BASEURL}}">{{@feedattr.author}}</a> {{@dict_on}} <time datetime="{{ date('Y-d-m', strtotime(@item.date)) }}T{{ date('H:i:s+00:00',strtotime(@item.date)) }}">{{ date('d M. Y', strtotime(@item.date)) }}</time>.
+                            </p>
+                        </div>
+
+                        <check if="{{(trim(@item.subtitle)!='')}}">
+                            <div class="uk-grid" uk-grid>
+                                <div class="uk-width-expand@m">
+                                    <div class="uk-card uk-background-default uk-card-body">
+                                        <check if="{{(trim(@item.subtitle)!='')}}">
+                                            <!-- episode description -->
+                                            <p><b>{{@item.subtitle | raw}}</b></p>
+
+                                            <p>{{@item.summary | raw}}</p>
+                                        </check>
+
+                                        <check if="{{isset(@item.contributors_data)}}">
+                                            <repeat group="{{@item.contributors_data}}" value="{{@own}}"
+                                                    key="{{@owner}}">
+                                                <check if="{{@own.type == 'guest'}}">
+                                                    <!-- contributors type: guest -->
+                                                    <div class="uk-comment">
+                                                        <header class="uk-comment-header uk-grid-medium uk-flex-middle"
+                                                                uk-grid>
+                                                            <div class="uk-width-auto">
+                                                                <check if="{{isset(@own.image)}}">
+                                                                    <img class="uk-border-circle uk-box-shadow-small"
+                                                                         src="{{@own.image}}"
+                                                                         width="70"
+                                                                         height="70"
+                                                                         alt="{{@own.type}} {{@own.name}}">
+                                                                </check>
+                                                            </div>
+                                                            <div class="uk-width-expand">
+                                                                <h6 class="uk-margin-remove">
+                                                                    {{@dict_guest}}
+                                                                </h6>
+                                                                <h6 class="uk-margin-remove uk-text-secondary uk-text-bold">
+                                                                    <a class="uk-link-reset"
+                                                                       target="_blank" href="{{@own.url}}">{{@own.name}}</a>
+                                                                </h6>
+                                                                <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                                                                    <li class="uk-width-1-10">
+                                                                        <check if="{{isset(@own.description)}}">
+                                                                            {{@own.description}}
+                                                                        </check>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </header>
+                                                    </div>
+                                                </check>
+                                            </repeat>
+                                        </check>
+                                    </div>
+                                </div>
+                                <div class="uk-width-auto@m uk-background-default uk-card-body uk-visible@m">
+                                    <check if="{{isset(@item.image)}}">
+                                        <true>
+                                            <!-- episode poster -->
+                                            <img class="uk-border-rounded uk-box-shadow-medium uk-visible@m"
+                                                 src="{{@item.image}}"
+                                                 width="200"
+                                                 height="200"
+                                                 alt="{{@item.title}} | Episode: {{@item.title}}">
+                                        </true>
+                                        <false>
+                                            <!-- podcast poster -->
+                                            <img class="uk-border-rounded uk-box-shadow-medium uk-visible@m"
+                                                 src="{{@feedattr.image}}"
+                                                 width="200"
+                                                 height="200"
+                                                 alt="{{@item.title}} | Episode: {{@item.title}}">
+                                        </false>
+                                    </check>
+                                </div>
+                            </div>
+                        </check>
+
+                        <div class="article-player">
+                            <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                <repeat group="{{glob(@tpath.'/episode-player/*.html')}}"
+                                        value="{{@template}}">
+                                    <!-- hook: {{'episode-player/'.basename(@template)}} -->
+                                    <include href="{{'episode-player/'.basename(@template)}}"/>
+                                </repeat>
+                            </repeat>
+
+                            <check if="{{@item.noaudio==''}}">
+                                <!--article-player-->
+                                <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                    <repeat group="{{glob(@tpath.'/player/*.html')}}" value="{{@template}}">
+                                        <include href="{{'player/'.basename(@template)}}"/>
+                                    </repeat>
+                                </repeat>
+
+                                <check if="{{isset(@item.contributors_data)}}">
+                                    <!-- contributors type: team -->
+                                    <h4 class="uk-text-secondary">{{@dict_contris}}</h4>
+                                    <repeat group="{{@item.contributors_data}}" value="{{@own}}" key="{{@owner}}">
+                                        <check if="{{@own.type=='team'}}">
+                                            <div class="uk-comment">
+                                                <div class="uk-comment-header uk-grid-medium uk-flex-middle"
+                                                     uk-grid>
+                                                    <div class="uk-width-auto">
+                                                        <check if="{{isset(@own.image)}}">
+                                                            <img class="uk-border-circle uk-box-shadow-small"
+                                                                 src="{{@own.image}}"
+                                                                 width="50"
+                                                                 height="50"
+                                                                 alt="{{@own.type}} {{@own.name}}">
+                                                        </check>
+                                                    </div>
+                                                    <div class="uk-width-expand">
+                                                        <h6 class="uk-margin-remove uk-text-bold">
+                                                            <a class="uk-link-reset" target="_blank" href="{{@own.url}}">{{@own.name}}</a>
+                                                        </h6>
+                                                        <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                                                            <li class="uk-width-1-10">
+                                                                <check if="{{isset(@own.description)}}">
+                                                                    {{@own.description}}
+                                                                </check>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="uk-width-expand">
+                                                        <ul class="uk-comment-meta uk-subnav uk-margin-remove-top">
+                                                            <check if="{{isset(@own.twitter)}}">
+                                                                <li>
+                                                                    <a target="_blank"
+                                                                       href="https://twitter.com/{{@own.twitter}}">
+                                                                        <span class="uk-icon-button-dark"
+                                                                              uk-icon="icon: twitter"></span>
+                                                                    </a>
+                                                                </li>
+                                                            </check>
+                                                            <check if="{{isset(@own.facebook)}}">
+                                                                <li>
+                                                                    <a target="_blank"
+                                                                       href="https://facebook.com/{{@own.facebook}}">
+                                                                        <span class="uk-icon-button-dark"
+                                                                              uk-icon="icon: facebook"></span>
+                                                                    </a>
+                                                                </li>
+                                                            </check>
+                                                            <check if="{{isset(@own.xing)}}">
+                                                                <li>
+                                                                    <a target="_blank"
+                                                                       href="https://www.xing.com/profile/{{@own.xing}}">
+                                                                        <span class="uk-icon-button-dark"
+                                                                              uk-icon="icon: xing"></span>
+                                                                    </a>
+                                                                </li>
+                                                            </check>
+                                                            <check if="{{isset(@own.mastodon)}}">
+                                                                <li>
+                                                                    <a target="_blank"
+                                                                       href="{{@own.mastodon}}">
+                                                                        <span class="uk-icon-button-dark"
+                                                                              uk-icon="icon: mastodon"></span>
+                                                                    </a>
+                                                                </li>
+                                                            </check>
+                                                            <check if="{{isset(@own.github)}}">
+                                                                <li>
+                                                                    <a target="_blank"
+                                                                       href="https://github.com/{{@own.github}}">
+                                                                        <span class="uk-icon-button-dark"
+                                                                              uk-icon="icon: github"></span>
+                                                                    </a>
+                                                                </li>
+                                                            </check>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </check>
+                                    </repeat>
+                                </check>
+
+                                <!--episode downloads-->
+                                <h4 class="uk-text-secondary">Download</h4>
+                                <p>{{ @dict_epi_duration | raw }} <b>{{ @item.duration }}</b> {{ @dict_epi_duration_end }}</p>
+
+                                <form class="uk-form-stacked">
+                                    <!--download-->
+                                    <repeat group="{{@item.audiofiles}}"
+                                            value="{{@audiofile}}"
+                                            key="{{@audiotype}}">
+                                        <div class="uk-form-controls uk-margin-top">
+                                            <b class="uk-text-primary">Download:</b> {{@audiotype}}
+                                            ({{ceil(@audiofile.length / 1048576)}} MB)
+                                        </div>
+                                        <div class="uk-inline uk-width-3-4">
+                                            <a class="uk-form-icon"
+                                               title="download {{@audiotype}} - size: {{ceil(@audiofile.length / 1048576)}} MB"
+                                               href="{{@audiofile.link}}"
+                                               uk-icon="icon: cloud-download"></a>
+                                            <input class="uk-input uk-text-muted uk-width-1-1"
+                                                   type="text"
+                                                   field="{{@audiotype}}"
+                                                   placeholder="{{@audiofile.link}}"
+                                                   value="{{@audiofile.link}}">
+                                        </div>
+                                    </repeat>
+
+                                    <!--download torrents-->
+                                    <check if="{{@feedattr.bitlove}}">
+                                        <repeat group="{{@feedattr.bitlove}}"
+                                                value="{{@bitlove}}"
+                                                key="{{@audiotype}}">
+                                            <div class="uk-form-controls uk-margin-top">
+                                                <b class="uk-text-primary">Torrent:</b> {{@audiotype}}
+                                                ({{ceil(@audiofile.length / 1048576)}} MB)
+                                            </div>
+                                            <div class="uk-inline uk-width-3-4">
+                                                <a class="uk-form-icon"
+                                                   title="download as torrent {{@audiotype}} - size: {{ceil(@audiofile.length / 1048576)}} MB"
+                                                   href="http://bitlove.org/{{@bitlove.user}}/{{@bitlove.feed}}/{{@item.slug}}.{{@audiotype}}.torrent"
+                                                   uk-icon="icon: pull"></a>
+                                                <input class="uk-input uk-text-muted uk-width-1-1"
+                                                       type="text"
+                                                       field="{{@audiotype}}"
+                                                       placeholder="{{@audiofile.link}}"
+                                                       value="http://bitlove.org/{{@bitlove.user}}/{{@bitlove.feed}}/{{@item.slug}}.{{@audiotype}}.torrent">
+                                            </div>
+                                        </repeat>
+                                    </check>
+
+                                </form>
+                            </check>
+
+                            <check if="{{@item.noaudio==''}}">
+                                <!--shownotes-->
+                                <h4 class="uk-text-secondary">Shownotes</h4>
+                            </check>
+
+                            <div class="article">
+                                <check if="{{(trim(@item.shownotes)!='')}}">{{ @item.shownotes | raw }}</check>
+                            </div>
+
+                            <check if="{{@item.noaudio==''}}">
+                                <!--license-->
+                                <h4 class="uk-text-secondary">{{@dict_license}}</h4>
+                                <div class="license">
+                                    <p>
+                                        {{ @dict_lic_info }}
+                                    </p>
+                                </div>
+                                <div class="production">
+                                    <ul>
+                                        <check if="{{isset(@item.contributors_data)}}">
+                                            <!-- license: contibutors -->
+                                            <repeat group="{{@item.contributors_data}}"
+                                                    value="{{@own}}"
+                                                    key="{{@owner}}">
+                                                <li>
+                                                    <check if="{{@own.type =='team'}}"><b>{{@dict_podcaster}}:</b></check>
+                                                    <check if="{{@own.type =='guest'}}"><b>{{@dict_guest}}:</b></check>
+                                                    <a target="_blank" href="{{@own.url}}">{{@own.name}}</a>
+                                                </li>
+                                            </repeat>
+                                        </check>
+                                        <check if="{{@item.banner != ''}}">
+                                            <!-- license: episode banner -->
+                                            <check if="{{@item.bannerURL}}">
+                                                <li>
+                                                    <b>{{@dict_epi_banner}}:</b>
+                                                    <a target="_blank"
+                                                       href="{{@item.bannerURL}}">{{@item.bannerPage}}</a>,
+                                                    {{@dict_license}}: {{@item.bannerLicense}}
+                                                </li>
+                                            </check>
+                                        </check>
+                                        <check if="{{@item.image != ''}}">
+                                            <!-- license: episode poster -->
+                                            <check if="{{@feedattr.imageCreator != '' and @feedattr.imageLicense != '' and @feedattr.imageURL != ''}}">
+                                                <true>
+                                                    <li>
+                                                        <b>{{@dict_epi_image}}:</b> {{@feedattr.imageCreator}},
+                                                        {{@dict_license}}: <a target="_blank"
+                                                           href="{{@feedattr.imageURL}}">{{@feedattr.imageLicense}}</a>
+                                                    </li>
+                                                </true>
+                                                <false>
+                                                    <li>
+                                                        <b>{{@dict_epi_image}}:</b> {{@feedattr.title}},
+                                                        {{@dict_license}} <a href="{{@BASEURL}}{{@feedattr.slug}}/show/{{@item.slug}}">{{@feedattr.licensename}}</a>
+                                                    </li>
+                                                </false>
+                                            </check>
+                                        </check>
+                                        <check if="{{@item.intro_title}}">
+                                            <true>
+                                                <!-- license: intro sound -->
+                                                <li>
+                                                    <b>{{@dict_epi_intro}}:</b>
+                                                    <a target="_blank"
+                                                       href="{{@item.intro_ownerUrl}}">{{@item.intro_title}}</a>
+                                                    <check if="{{@item.intro_owner}}">
+                                                        by <a href="{{@item.intro_ownerUrl}}"
+                                                              target="_blank">{{@item.intro_owner}}</a></check>,
+                                                    {{@dict_license}}: <a href="{{@item.intro_licUrl}}"
+                                                                            target="_blank">{{@item.intro_lic}}</a>
+                                                </li>
+                                            </true>
+                                            <false>
+                                                <check if="{{@feedattr.intro}}">
+                                                    <!-- license: intro sound -->
+                                                    <li>
+                                                        <b>{{@dict_epi_intro}}:</b>
+                                                        <a target="_blank"
+                                                           href="{{@feedattr.intro_ownerUrl}}">{{@feedattr.intro_title}}</a>
+                                                        <check if="{{@feedattr.intro_owner}}">
+                                                            by <a href="{{@feedattr.intro_ownerUrl}}"
+                                                                  target="_blank">{{@feedattr.intro_owner}}</a></check>,
+                                                        {{@dict_license}}: <a href="{{@feedattr.intro_licUrl}}"
+                                                                                target="_blank">{{@feedattr.intro_lic}}</a>
+                                                    </li>
+                                                </check>
+                                            </false>
+                                        </check>
+                                        <check if="{{@item.outro_title}}">
+                                            <true>
+                                                <!-- license: outro sound -->
+                                                <li>
+                                                    <b>{{@dict_epi_outro}}:</b>
+                                                    <a target="_blank"
+                                                       href="{{@item.outro_ownerUrl}}">{{@item.outro_title}}</a>
+                                                    <check if="{{@item.outro_owner}}">
+                                                        by <a href="{{@item.outro_ownerUrl}}"
+                                                              target="_blank">{{@item.outro_owner}}</a></check>,
+                                                    {{@dict_license}}: <a href="{{@item.outro_licUrl}}"
+                                                                            target="_blank">{{@item.outro_lic}}</a>
+                                                </li>
+                                            </true>
+                                            <false>
+                                                <check if="{{@feedattr.intro}}">
+                                                    <!-- license: outro sound -->
+                                                    <li>
+                                                        <b>{{@dict_epi_outro}}:</b>
+                                                        <a target="_blank"
+                                                           href="{{@feedattr.outro_ownerUrl}}">{{@feedattr.outro_title}}</a>
+                                                        <check if="{{@feedattr.outro_owner}}">
+                                                            by <a href="{{@feedattr.outro_ownerUrl}}"
+                                                                  target="_blank">{{@feedattr.outro_owner}}</a></check>,
+                                                        {{@dict_license}}: <a href="{{@feedattr.outro_licUrl}}"
+                                                                                target="_blank">{{@feedattr.outro_lic}}</a>
+                                                    </li>
+                                                </check>
+                                            </false>
+                                        </check>
+                                        <check if="{{@feedattr.licensename}}">
+                                            <!-- license: podcast -->
+                                            <li>
+                                                <b>{{ @dict_lic_end }}:</b>
+                                                {{ date('d M. Y', strtotime(@item.date)) }}, {{@dict_license}}:
+                                                <a href="{{ @feedattr.licenseurl }}" target="_blank"
+                                                   title="{{ @feedattr.licensename }}">{{@feedattr.licensename}}</a>
+                                            </li>
+                                        </check>
+                                    </ul>
+                                </div>
+                            </check>
+
+                            <!--keywords-->
+                            <check if="{{@item.keywords}}">
+                                <repeat group="{{explode(',',@item.keywords)}}" value="{{@keyword}}">
+                                    <a class="uk-badge"
+                                       href="{{@BASEURL}}{{@feedattr.slug}}/show/search/{{@keyword}}">{{@keyword}}</a>
+                                </repeat>
+                            </check>
+
+
+                            <?php /* page hooks */ ?>
+                            <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                <repeat group="{{glob(@tpath.'/episode-footer/*.html')}}" value="{{@template}}">
+                                    <!-- hook: {{'episode-footer/'.basename(@template)}} -->
+                                    <include href="{{'episode-footer/'.basename(@template)}}"/>
+                                </repeat>
+                            </repeat>
+
+                            <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                <repeat group="{{glob(@tpath.'/episode-end/*.html')}}" value="{{@template}}">
+                                    <!-- hook: {{'episode-end/'.basename(@template)}} -->
+                                    <include href="{{'episode-end/'.basename(@template)}}"/>
+                                </repeat>
+                            </repeat>
+
+                            <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+                                <repeat group="{{glob(@tpath.'/article-end/*.html')}}" value="{{@template}}">
+                                    <!-- hook: {{'episode-end/'.basename(@template)}} -->
+                                    <include href="{{'article-end/'.basename(@template)}}"/>
+                                </repeat>
+                            </repeat>
+
+                        </div>
+                    </article>
+                </div>
+            </repeat>
+            <!--sidebar-->
+            <include href="set/sidebar.html"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+title:
+001FRC: Mit alles und ohne nix
+
+date:
+2015-01-02 20:00:00
+
+subtitle:
+Die satellitengestützten Telefon- und Datennetze der Erde.
+
+summary:
+Als der globale Erfolg des Mobilfunks noch nicht absehbar wurde noch massiv in Satellitentelefonie investiert und dank dieses frühen Engagements gibt es heute noch mehrere Satellitennetze, die global Telefonie- und Datendienste bereitstellen. Wir sprechen über die Geschichte dieser Netze und ihre Technik, über Telefon- und Datendienste auf diesen Netzen und Aspekte wie die Sicherheit und Gefährdung der Privatsphäre durch die technischen Strukturen der Netze.
+
+shownotes:
+Digitale Arbeitsmaterialien kamen mit dem Versprechen, neue Lehrmethoden zu ermöglichen, doch die erste Welle 
+entsprechender Angebote wusste nur in Teilen zu überzeugen. Vor allem brachten die digitalisierten Materialien 
+neue Nutzungseinschränkungen mit sich: Das Urheberrecht, schwierige Lizensie- rungsbedingungen und technische 
+Kopierschutz-Systeme machen es für die Lehrer und Lehrerinnen letztlich noch schwieriger, diese Materialien sachge- 
+recht einzusetzen und die inhärente Vorteile des Digitalen nutzen zu können.
+
+keywords:
+keyword1, keyword2, keyword3
+
+duration:
+01:23:45
+
+
+chapters:
+00:00:00 Intro 
+00:09:12 Ziemlich in der Mitte
+00:18:00 Kurz vor Ende
+00:18:22 Ja, die Kapitel hier sind wirklich nur zu Demozwecken da...
+
+contributors:
+rstockm mccouman eazy
+
+
+image:
+http://firtz.rc.2.1-7.x-fix/feeds/demo/001-cover.png
+
+banner:
+http://firtz.rc.2.1-7.x-fix/feeds/demo/001-banner.jpg
+
+bannerLicense:
+CC0
+
+bannerPage:
+Bild 1784 from www.Pexels.com by Little Visuals
+
+bannerURL:
+https://www.pexels.com/de/foto/apple-laptop-macbook-pro-notizbuch-1784/
+
+
+#:---------------------------------------------------------------------------------------------------
+#: DE: Intro/Outro Sound Lizenz
+#:
+#: Sound Title | Creator | Link zum Creator         | Lizenz | Link zur URL der Lizenz
+#: Flower Intro, McCouman, https://www.wikibyte.org, CC by SA, https://creativecommons.org/licenses/by/3.0/de/
+#:---------------------------------------------------------------------------------------------------
+
+intro:
+Flower 1, McCouman, https://www.wikibyte.org, Copyright, http://c3ltax.de
+
+
+outro:
+Flower 2, McCouman, https://www.wikibyte.org, CC by SA, https://creativecommons.org/licenses/by/3.0/de/
+
+
+#:---------------------------------------------------------------------------------------------------
+#: Audio Dateien
+#: Dies sind die Links zu deiner Episode. Je nachdem was Du in der "feed.cfg" angegeben hast,
+#: kannst Du hier mehrere Audio-Dateien unterschiedlichster Typen wählen.
+#:
+#: Achte bitte stehts auf die richtige Links zu deinen Dateien der jeweiligen Endungen, Danke!
+#:---------------------------------------------------------------------------------------------------
+
+mp3:
+https://cre.fm/podlove/file/3436/s/download/c/select-show/cre213-brot.m4a 42991616
+
+m4a:
+https://cre.fm/podlove/file/3436/s/download/c/select-show/cre213-brot.m4a 42991616

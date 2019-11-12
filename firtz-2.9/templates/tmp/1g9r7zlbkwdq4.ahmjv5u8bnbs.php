@@ -1,0 +1,147 @@
+/* white theme */
+.uk-navbar-white {
+    background: #FFFFFF;
+}
+
+.uk-navbar-nav li:hover {
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+    -webkit-transition-property: opacity,transform,filter;
+    transition-property: opacity,transform,filter;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+.uk-navbar-nav > li:hover {
+    background: #f9f9f9;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+    -webkit-transition-property: opacity,transform,filter;
+    transition-property: opacity,transform,filter;
+}
+.uk-navbar-nav > li:hover > a {
+    color: #000 !important;
+
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+    -webkit-transition-property: opacity,transform,filter;
+    transition-property: opacity,transform,filter;
+}
+
+#navline-standard {
+    background: #696969;
+    padding: 5px;
+}
+#navline-white {
+    background: <?php echo $templatevars['color']; ?>;
+    padding: 10px 0 10px 0;
+}
+
+.uk-icon-button-dark {
+    box-sizing: border-box;
+    width: 36px;
+    height: 36px;
+    border-radius: 500px;
+    color: #f3f3f3;
+    margin: 2px;
+    background-color: <?php echo $templatevars['color']; ?> !important;
+    vertical-align: middle;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-transition: .1s ease-in-out;
+    transition: .1s ease-in-out;
+    -webkit-transition-property: color, background-color, border-color, box-shadow;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+.uk-icon-button-dark:hover,
+.uk-icon-button-dark:focus {
+    background-color: <?php echo $templatevars['light']; ?> !important;
+    color: #fff;
+    outline: 0
+}
+
+.uk-icon-button-dark:active,
+.uk-active > .uk-icon-button {
+    background-color: <?php echo $templatevars['dark']; ?> !important;
+    color: #fff;
+}
+
+.uk-icon-button-light {
+    box-sizing: border-box;
+    width: 36px;
+    height: 36px;
+    border-radius: 500px;
+    color: #fff !important;
+    background-color: <?php echo $templatevars['light']; ?> !important;
+    vertical-align: middle;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-transition: .1s ease-in-out;
+    transition: .1s ease-in-out;
+    -webkit-transition-property: color, background-color, border-color, box-shadow;
+    transition-property: color, background-color, border-color, box-shadow;
+}
+
+.uk-icon-button-light:hover,
+.uk-icon-button-light:focus {
+    background-color: <?php echo $templatevars['color']; ?> !important;
+    color: #fff !important;
+    outline: 0
+}
+
+.uk-icon-button-light:active,
+.uk-active > .uk-icon-button {
+    background-color: <?php echo $templatevars['dark']; ?> !important;
+    color: #fff !important;
+}
+
+.uk-text-white {
+    color: rgba(255, 255, 255, 0.73);
+    font-size: 12px;
+}
+
+a.bc-link {
+    color: #fff;
+}
+
+
+/*episode*/
+.ps-top {
+    height: 195px;
+}
+
+.ps-episode-header {
+    padding: 40px 40px 0 40px !important;
+    background: #fff;
+}
+@media (min-width: 960px) {
+    .ps-episode-header {
+        padding: 40px;
+        background: #fff;
+    }
+}
+
+
+.uk-footer-line {
+    background: <?php echo $templatevars['color']; ?>;
+}
+
+/*footer*/
+.tm-footer {
+    background: #eee;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="{{ substr(@feedattr.language,0,2) }}" dir="ltr">
+<head>
+    <!-- head meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- page title -->
+    <title>Podcast Society > Home</title>
+
+    <!-- page meta -->
+    <meta name="description" content="{{@feedattr.description}}"/>
+    <meta name="author" content="{{@feedattr.author | raw}}"/>
+    <repeat group="@feedattr.audioformats" value="{{@format}}">
+        <link rel="alternate" type="application/rss+xml" title="{{@feedattr.title}} ({{@format}} Audio)" href="{{@feedattr.baserel}}{{@format}}{{@extxml}}" />
+    </repeat>
+    <check if="{{@feedattr.image}}">
+        <meta property="og:image" content="{{@feedattr.image}}"/>
+    </check>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<check if="{{!@showpage}}"><true>{{@og.title}}</true><false>{{basename(@showpage,'.html')}}</false></check>"/>
+    <meta property="og:url" content="<check if="{{!@showpage}}"><true>{{@og.url}}</true><false>{{@BASEURL}}{{@feedattr.slug}}/show/page/{{basename(@showpage)}}</false></check>"/>
+    <meta property="og:site_name" content="{{@feedattr.title}}"/>
+
+    <!-- audio meta -->
+    <check if="{{@og.audio}}">
+        <meta property="og:{{@og.audio.typename}}" content="{{@og.audio.url}}"/>
+        <meta propertyp="og:{{@og.audio.typename}}:type" content="{{@og.audio.type}}"/>
+    </check>
+
+    <!-- icons meta -->
+    <check if="{{@feedattr.image}}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{@feedattr.image}}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{@feedattr.image}}">
+        <link rel="apple-touch-icon-precomposed" href="{{@feedattr.image}}">
+        <link rel="shortcut icon" href="{{@favicon}}">
+    </check>
+
+    <!-- feed meta -->
+    <repeat group="@feedattr.audioformats" value="{{@format}}">
+        <link rel="alternate" type="application/rss+xml" title="Podcast Feed: {{@feedattr.title}} {{@format}}" href="{{@feedattr.baserel}}{{@format}}{{@extxml}}" />
+    </repeat>
+
+    <!-- dynamic css -->
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'qx3/*.inc')}}" value="{{@template}}">
+            <include href="{{'qx3/'.basename(@template)}}"/>
+        </repeat>
+    </repeat>
+
+    <!-- css -->
+    <link href="{{@BASEURL}}src/pwp/static/podlove-web-player.css" rel="stylesheet" media="screen" type="text/css" />
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'qx3/*.css')}}" value="{{@template}}">
+            <link href="{{@BASEURL}}{{'src/templates/default/qx3/'.basename(@template)}}" rel="stylesheet" media="screen" type="text/css" />
+        </repeat>
+    </repeat>
+
+    <!-- js -->
+    <script src="{{@BASEURL}}src/templates/default/qx3/jquery.js"></script>
+    <script src="{{@BASEURL}}src/templates/default/qx3/qx3.js"></script>
+    <script src="{{@BASEURL}}src/templates/default/qx3/qx3-icons.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <?php
+	/**
+	 *	Hook: /head/
+	 *
+	 *	@info hier werden alle templates geladen, die im Ordner "head" eingelegt wurden
+	 */
+	?>
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <repeat group="{{glob(@tpath.'/head/*.html')}}" value="{{@template}}">
+            <include href="{{'head/'.basename(@template)}}"/>
+        </repeat>
+    </repeat>
+    <?php
+	/**
+	 *	Child Templates: /head/
+	 */
+	?>
+    <repeat group="{{explode(',',@UI)}}" value="{{@tpath}}">
+        <!-- tpath: {{@tpath.'head/*.js'}} -->
+        <repeat group="{{glob(@tpath.'head/*.js')}}" value="{{@template}}">
+            <!-- temp: {{@template}} -->
+            <script src="{{'/'.@tpath.'head/'.basename(@template)}}"></script>
+        </repeat>
+    </repeat>
+</head>
+<body>
+<include href="set/navi.html"/>
+<include href="set/mobile-navi.html"/>
+<check if="{{!@showpage}}">
+    <true>
+        <!--breadcrumb-->
+        <div id="navline-<check if="{{@templatevars.navicolor == 'white'}}"><true>white</true><false>standard</false></check>">
+            <div class="uk-container uk-text-white">Home > Welcome</div>
+        </div>
+        <!--page-->
+        <include href="set/welcome.html"/>
+    </true>
+</check>
+
+<!--footer-->
+<include href="set/footer.html"/>
+</body>
+</html>
