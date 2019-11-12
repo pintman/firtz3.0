@@ -1,17 +1,41 @@
 Changelog:
 
-RC 3.0
-- fixed and change to run with 7.0 - 7.3
+2.8 PHP fixes for 7.x
+- fixed PHP 7.0 (eazy)
+- fixed PHP 7.3 (mccouman)
+- fixed webplayer extension
+- new meta types: feedattr_default
+  - 'subtitle',         # Update for podlove webplayer
+  - 'street',           # Impressum (required fields)
+  - 'city',             # Impressum (required fields)
+  - 'country',          # Impressum (required fields)
+  - 'phone',            # Impressum (required fields)
+  - 'fax',              # Impressum (required fields)
+  - 'tax',              # Impressum (required fields)
+  - 'image',            # QuorX 3 Skin style (required fields)
+  - 'imageLicense',     # QuorX 3 Skin style (optional)
+  - 'imageCreator',     # QuorX 3 Skin style (optional)
+  - 'imageURL',         # QuorX 3 Skin style (optional)
+  - 'supporter'         # Sidebar project support (optional)
+- new meta types: itemattr
+  - 'subtitle',         # Update podlove webplayer / xml  
+  - 'summary',          # Update for podlove webplayer
+  - 'banner',           # QuorX 3 Skin style (optional)
+  - 'bannerLicense',    # QuorX 3 Skin style (optional)
+  - 'bannerPage',       # QuorX 3 Skin style (optional)
+  - 'bannerURL',        # QuorX 3 Skin style (optional)
+  - 'image',            # QuorX 3 Skin style (optional)
+  - 'intro',            # QuorX 3 Skin style (optional)
+  - 'outro',            # QuorX 3 Skin style (optional)
 
-
-RC 2.1 Beta 2
+2.1 Beta 2
 - fixed site.html
 - fixed extension (description as JSON output)
 - fix share json
 - fix feed class
 - remove pwp folder (obsolet!)
 
-RC 2.1 firtz + podlove webplayer 4
+2.1 firtz + podlove webplayer 4
 - remove search extension and include in firtz (redirect)
 - new extension "webplayer" with podlove webplayer version 4 (standrad include)
 - fixed opus file and other minimalistics
