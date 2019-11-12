@@ -35,10 +35,10 @@ rstockm mccouman eazy
 
 
 image:
-http://firtz.rc.2.1-7.x-fix/feeds/demo/001-cover.png
+http://demo-rc3.firtz.wikibyte.org/feeds/demo/001-cover.png
 
 banner:
-http://firtz.rc.2.1-7.x-fix/feeds/demo/001-banner.jpg
+http://demo-rc3.firtz.wikibyte.org/feeds/demo/001-banner.jpg
 
 bannerLicense:
 CC0
@@ -74,7 +74,7 @@ Flower 2, McCouman, https://www.wikibyte.org, CC by SA, https://creativecommons.
 #:---------------------------------------------------------------------------------------------------
 
 mp3:
-https://cre.fm/podlove/file/3436/s/download/c/select-show/cre213-brot.m4a 42991616
+http://demo-rc3.firtz.wikibyte.org/feeds/demo/001.mp3 42991616
 
 m4a:
-https://cre.fm/podlove/file/3436/s/download/c/select-show/cre213-brot.m4a 42991616
+http://demo-rc3.firtz.wikibyte.org/feeds/demo/001.m4a 42991616

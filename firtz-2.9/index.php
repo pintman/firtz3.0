@@ -5,7 +5,7 @@ ini_set('auto_detect_line_endings', true);
 # Include
 $main = require('src/lib/base.php');
 
-$main->set('DEBUG', 2);
+$main->set('DEBUG', 0);
 $main->set('CDURATION', 3600);
 
 $main->set('version', 2);

@@ -13,11 +13,11 @@
                 <title>{{@feedattr.title}}</title>
             </check>
             <check if="{{@singlepage==true}}">
-                <title><repeat group="@items" value="{{@item}}">{{@feedattr.title}} | {{@item.title}}</repeat> | {{@feedattr.title}}</title>
+                <title><repeat group="@items" value="{{@item}}">{{@feedattr.title}} | {{@item.title}}</repeat></title>
             </check>
         </true>
         <false>
-            <title>{{@feedattr.title}} | {{@pagename}}</title>
+            <title>{{@feedattr.title}} | <check if="{{!@showpage}}"><true>{{@og.title}}</true><false>{{basename(@showpage,'.html')}}</false></check></title>
         </false>
     </check>
     <!-- page meta -->
