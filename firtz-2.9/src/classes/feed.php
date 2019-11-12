@@ -87,11 +87,14 @@ class feed
 
                     case 'bitlove':
 
-                        // bitlove information
+                        // bitlove information - fix 2.8
                         $bitlove = explode(" ",$line);
-                        if (count($bitlove)==3)
-                            $attr['bitlove'][$bitlove[0]] = array('format'=>$bitlove[0],'user'=>$bitlove[1],'feed'=>$bitlove[2]);
-
+                        $bitattr[$bitlove[0]] = array(
+                            'format'=>$bitlove[0],
+                            'user'=>$bitlove[1],
+                            'feed'=>$bitlove[2]
+                        );
+                        if (count($bitlove)==3) $attr['bitlove'] = $bitattr;
                         break;
 
                     case 'templatevars':
@@ -106,7 +109,7 @@ class feed
                         break;
 
                     default:
-
+                        
                         // standard attributes
                         $attr[$thisattr] .= ($attr[$thisattr] != "") ? "\n" . $line : $line;
 
