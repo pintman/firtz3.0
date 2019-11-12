@@ -1,9 +1,36 @@
 Changelog:
 
-2.8 PHP fixes for 7.x
+2.9 Extensions and QuorX 3 changes
+- fixed PHP 7.2 and 7.3 changes (string to array)
+- extension: disqus 
+  - fixed js, 
+  - hooks 
+  - new layout
+  - isqus create infobox in QuorX 3 style
+- pages: Netiquette for disqus link
+- fixed full width for webplayer
+- extension: contributors
+  - delete google+
+  - create mastodon
+- QuorX3 
+  - social links as blank target
+  - js icon callback with mastodon
+  - mastodon style icon
+  - delete styles for webplayer
+  - delete styles for subscribe button
+  - delete middle container in set 
+  - change dict for translation (de)
+  - delete old admin translation
+
+2.8 PHP fixes for 7.x and new Attributes + QuorX 3
 - fixed PHP 7.0 (eazy)
 - fixed PHP 7.3 (mccouman)
 - fixed webplayer extension
+- new QuorX 3 Skin
+  - style guides 
+  - theme functions
+  - more hooks
+  - contributors view (guest,podcaster)
 - new meta types: feedattr_default
   - 'subtitle',         # Update for podlove webplayer
   - 'street',           # Impressum (required fields)
