@@ -1,4 +1,4 @@
-#firtz - eine Entscheidungshilfe
+# firtz - eine Entscheidungshilfe
 
 Du möchtest einen Podcast veröffentlichen? Dann bist Du hier schon einmal nicht falsch.
 

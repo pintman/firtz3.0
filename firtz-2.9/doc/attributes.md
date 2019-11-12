@@ -1,139 +1,259 @@
-#Attribute im Feed
+# firtz RC 3.0 -  Attribute im Feed
 
-**title**
+#### Allgemeine Angaben
+
+Die folgenden Attribute sind Angaben deines Feeds. Sie werden im Unterordner (in der Demo mit Namen
+"demo" hinterlegt) des Hauptordners "/feeds" hinterlegt und in der feed.cfg eingetragen.
+
+`z.B.: /feeds/demo/feed.cfg`
+
+**title:**
 
 Schlicht und einfach der Titel Deines Podcasts
 
-**description**
+**subtitle:**
 
-Beschreibung trifft es wohl nicht ganz. Eigentlich ist das mehr ein kurzer Anreißer, worum es geht. Wie zum Beispiel: "Der großartige Podcast aus Koblenz".
+Untertitel deines Podcasts
 
-**summary**
+**description:**
+
+Beschreibung trifft es wohl nicht ganz. Eigentlich ist das mehr ein kurzer Anreißer, worum es geht.
+Wie zum Beispiel: "Der großartige Podcast aus Koblenz".
+
+**summary:**
 
 Jetzt kannst Du sicher ausführlicher werden als in der description. Übertreibe es aber auch nicht.
 
-**formats**
+**formats:**
 
-Sag dem firtz welche Formate Du in Deinem Podcast haben wirst. Die Liste der Bezeichnungen findest Du unter [den Formaten](#die-formate). Das erste angegebene Format ist das Standardformat, das genutzt wird, wenn kein explizites gewählt wird.
+Sag dem firtz welche Formate Du in Deinem Podcast haben wirst.
+Das erste angegebene Format ist das Standardformat, das genutzt wird, wenn kein explizites gewählt wird.
 
-**flattrid**
+Hier folgt eine Liste der unterstützten Formate. Unterstützt heißt nun nicht, dass im Player auf der
+Webseite alle diese Formate angezeigt oder abgespielt werden können. Das heißt an der Stelle nur,
+dass der firtz weiß, dass es sich bei diesem Format um eines handelt, das einen Feed erzeugen kann.
+Die Formate sind auch die slugs für alle Angaben z.B. im Feed.
 
-Lass Dich beschenken! Die flattr-ID reicht, um an allen relevanten Stellen Buttons einzubinden.
+Aber auch in den URLs werden Dir diese Slugs jedes mal wieder begegnen. In Klammern stelle ich
+sicherheitshalber dahinter, ob es sich um Audio oder Video handelt. Ein paar Formate sind beides nicht...
 
-**author**
+* mp3 (audio)
+* mpg (video)
+* m4a (audio)
+* m4v (video)
+* oga (audio)
+* ogg (audio)
+* ogv (video)
+* webma (audio)
+* webm (video)
+* flac (audio)
+* opus (audio)
+* mka (audio)
+* mkv (video)
+* epub (ebook)
+* mobi (ebook)
+* pdf
+* png (image)
+* jpg (image)
+* torrent (und nochmal: bitte nicht mit der bitlove-Option verwechseln!)
 
-Wie heißt Du? Diese Information ist sicherlich wichtig...
 
-**image**
+**bitlove:**
 
-Das Logo Deines Podcasts sollte entweder im Format JPG oder PNG vorliegen. Ideal ist aktuell eine Größe von 1400x1400 Pixeln. Bedenke bei Deiner Wahl aber unbedingt, dass dieses Bild in allen möglichen Größen genutzt wird. Es gilt also wie für jede gute Logogestaltung: Es muss auch in 32x32 noch gut aussehen!
+Wenn Du bei [bitlove](http://bitlove.org) Deine Feeds torrentifizierst, kannst Du hier - allerdings ausschließlich für
+das Webseitentemplate - Downloadlinks dafür konfigurieren.
 
-**keywords**
+Das Format sieht wie folgt aus (das "_" ist hier als Leerzeichen zu vetrstehen):
+<br>`<format>_<user>_<feedname>`
 
-Gib hier ein paar sinnvolle, kommagetrennte Stichwörter zu Deinem Podcast an. Diese Stichwörter helfen, Deine Werke später in den Podcastverzeichnissen zu finden.
+Wenn Deine Torrents also ungefähr so heißen:
+<br>`http://bitlove.org/supicast/supicast-m4a/sc001.m4a.torrent`,
 
-**category**
-Die Kategorien orientieren sich an den Vorgaben Apples für iTunes. Es gibt Hauptkategorien und jeweils mehrere Unterkategorien, die aber keine weiteren Kategorien unter sich haben. Um dies an dieser Stelle einigermaßen einfach konfigurieren zu können, wird entweder eine Hauptkategorie einzeln angegeben oder eine solche mit Unterkategorie durch -> verbunden:
+Dann sieht die Konfigurationszeile so aus:
+<pre>
+bitlove:
+m4a supicast supicast-m4a
+</pre>
 
-`Society & Culture`
+*Info:
+<br>Es können beliebig viele Formate konfiguriert werden. Verwechselt das bitte nicht mit einem torrent-Feed.
+Das geht auch, funktioniert allerdings genau so wie die normalen Formate.
+Du müsstest dafür in die *format:* Konfiguration "torrent" hinzufügen und in jeder Episode den
+vollständigen Link zu einem Torrentfile angeben. So wäre auch ein Feed ausschließlich mit
+Torrentlinks denkbar.*
 
-`Technology -> Podcasting`
 
-Diese Konfiguration würde den Podcast sowohl in die Hauptkategorie *Society & Culture* ohne weitere Unterkategorie setzen und in die Unterkategorie *Podcasting* in der Kategorie *Technology*. Die einzelne Angabe der Hauptkategorie *Technology* ohne *Podcasting* ist in diesem Falle nicht nötig. 
-Details zu den Kategorien finden sich [hier](http://www.apple.com/itunes/podcasts/specs.html#categories).
-
-Es ist nicht nötig (und erlaubt!) das "&" als `&amp;` zu kodieren.
-
-**email**
-
-Unter dieser Mailadresse bist Du zu erreichen. Denk dran, dass hier etwas erreichbares steht, schließlich will Dich vielleicht Apple für ein Feature anschreiben! ;-)
-
-**language**
+**language:**
 
 Dies ist die Sprache, in der der Podcast veröffentlicht, Deutsch z.B. wäre "de-DE". Info zu den Sprachcodes finden sich [hier](http://www.rssboard.org/rss-language-codes)
 
-**explicit**
+**explicit:**
 
 Hast Du Schweinkram auf der Zunge? Dann schütze die Kinder!!eins1ELF!
 
-**itunes**
 
-Ist der Podcast bereits bei iTunes erreichbar, steht hier der komplette Link zur iTunes-Seite. Den findest Du irgendwo auf genau dieser... frag mich nicht!
 
-**auphonic-path**
+#### Lizenzangaben
 
-Ich erkläre den auphonic-Workflow genauer in der Gesamtdokumentation. Hier sei nur erwähnt, dass unter auphonic-path der Pfad auf Deinem Server gemeint ist, unter dem die .json-Dateien gefunden werden. 
-
-**auphonic-glob**
-
-Wenn im auphonic-path die jsons mehrere Podcasts liegen, kannst Du mit diesem Pattern die für diesen Podcast nötigen jsons selektieren. Wenn die z.B. fasel00X.json heißen, die eines anderen Podcasts bla00X.json, gibst Du hier `fasel*.json` an.
-
-**auphonic-mode**
-
-full, exclusive, episode oder off. Genauere Infos in der vollen Dokumentation.
-
-**twitter**
-
-Nur das Twitter-Handle angeben, nicht den vollen Pfad zu Twitter, ohne @.
-
-**adn**
-
-Wenn Du auch bei ADN zu finden bist, nur das Handle, kein Pfad, kein @.
-
-**itunesblock**
-
-Möchtest Du iTunes blockieren? Weil Du gerade am Feed rumspielst? Oder weil iTunes doof ist? Dann schalte das hier auf `on` und Ruhe ist.
-
-**mediabaseurl**
-
-Gibst Du dann an, wenn Du allen Mediendateien einen festen URL voranstellen möchtest. Das macht im Grunde nur Sinn, wenn die Dateien anhand des Namens der .epi-Datei erkannt und gefunden werden sollen. Das wiederum benötigt dann auch den:
-
-**mediabasepath**
-
-Das ist der Ordner, in dem sich die Mediendateien befinden. Das ist nur sinnvoll, wenn Du in den .epi-Dateien nicht explizit auf die Mediendaten hinweist, sondern anhand des Dateinamens (==slug) diese finden lassen möchtest.
-
-**redirect**
-
-Es kann natürlich vorkommen, dass Du den Feed umziehen musst. Anderes System, andere Domain, was auch immer. Um Deine Abonnenten nicht mit einem toten (alten) Feed alleine zu lassen, erzählst Du dem firtz, wo denn der neue Feed zu finden ist. Der führt dann ein redirect (301) aus, was im Allgemeinen auch diverse Dienste wie z.B. iTunes auf den neuen Feed führen sollte.
-
-**bitlove**
-
-Wenn Du bei [bitlove](http://bitlove.org) Deine Feeds torrentifizierst, kannst Du hier - allerdings ausschließlich für das Webseitentemplate - Downloadlinks dafür konfigurieren. Das Format sieht wie folgt aus:
-
-*format* *user* *feedname*
-
-Wenn Deine Torrents also ungefähr so heißen:  
-*http://bitlove.org/supicast/supicast-m4a/sc001.m4a.torrent*  
-dann sieht die Konfigurationszeile so aus:
-
-bitlove:  
-m4a supicast supicast-m4a
-
-Es können beliebig viele Formate konfiguriert werden.
-
-Verwechselt das bitte nicht mit einem torrent-Feed. Das geht auch, funktioniert allerdings genau  so wie die normalen Formate. Du müsstest dafür in die **format:** Konfiguration "torrent" hinzufügen und in jeder Episode den vollständigen Link zu einem Torrentfile angeben. So wäre auch ein Feed ausschließlich mit Torrentlinks denkbar.
-
-**licensename**
+**licensename:**
 
 Gib hier an, wie die Lizenz heißt, unter der Du Deinen Podcast veröffentlichst. Schau Dich doch mal bei den [Creative Commons](http://creativecommons.org/) um. Da findest Du bestimmt etwas.
 
-**licenseurl**
+**licenseurl:**
 
 Unter dieser URL findet sich eine Erklärung Deiner Lizenz.
 
-**licenseimage**
+**licenseimage:**
 
 Einige Lizenzen bieten Logos an. CC hat sowas und sollte ein Bild vorliegen: her damit! Sieht besser aus.
 
-**rfc5005**
+
+#### Angaben zum Impressum
+
+Diese Angaben sind in Deutschland Pflichtangaben für den Feed und das Impressum.
+Optionale Angaben werden für das automatische generieren des Impressums benötigt und kannst Du
+auch direkt in der Seite "Impressum.html" ändern. Du findes die Angaben unter:
+
+`/templates/default/pages/Rechtliches/Impressum.html`
+
+**author:**
+
+Wie heißt Du? Diese Information ist sicherlich wichtig...
+
+**email:**
+
+Unter dieser Mailadresse bist Du zu erreichen. Denk dran, dass hier etwas erreichbares steht,
+schließlich will Dich vielleicht Apple für ein Feature anschreiben! ;-)
+
+**street: (optional)**
+
+Straße deines Wohnortes.
+
+**city: (optional)**
+
+Stadt in der Du wohnhaft bist
+
+**country: (optional)**
+
+Ich denke das versteht sich von selbst :P
+
+**phone: (optional)**
+
+Telefonnummer von Dir.
+
+**fax: (optional)**
+
+Wer so etwas noch besitzt.
+
+**tax: (optional)**
+
+Wenn Du mit deinem Podcast einen Cent verdienst dann solltest Du eine Umsatzsteuer ID bekommen haben,
+bzw. benötigst Du eine in Deutschland. Gebe diese unbedingt an um rechtliches Schritte zu verhindern.
+
+Wir haben euch hiermit Informiert und sind damit fein aus der Sache raus :-P
+
+
+
+#### Podcast Poster / Covers
+
+**image:**
+
+Das Logo Deines Podcasts sollte entweder im Format JPG oder PNG vorliegen. Ideal ist aktuell eine Größe von 1400x1400 Pixeln. Bedenke bei Deiner Wahl aber unbedingt, dass dieses Bild in allen möglichen Größen genutzt wird. Es gilt also wie für jede gute Logogestaltung: Es muss auch in 32x32 noch gut aussehen!
+
+**imageCreator:**
+
+Michael McCouman Jr.
+
+**imageURL:**
+
+http://wikibyte.org
+
+**imageLicense:**
+
+CC0
+
+
+#### Kategorien und Keywords
+
+**keywords:**
+
+Gib hier ein paar sinnvolle, kommagetrennte Stichwörter zu Deinem Podcast an. Diese Stichwörter helfen, Deine Werke später in den Podcastverzeichnissen zu finden.
+
+**category:**
+Die Kategorien orientieren sich an den Vorgaben Apples für iTunes. Es gibt Hauptkategorien und jeweils mehrere Unterkategorien, die aber keine weiteren Kategorien unter sich haben. Um dies an dieser Stelle einigermaßen einfach konfigurieren zu können, wird entweder eine Hauptkategorie einzeln angegeben oder eine solche mit Unterkategorie durch -> verbunden:
+
+<pre>
+    Society & Culture -> Philosophy
+    Technology
+</pre>
+
+Diese Konfiguration würde den Podcast sowohl in die Hauptkategorie *Society & Culture* ohne weitere Unterkategorie setzen und in die Unterkategorie *Podcasting* in der Kategorie *Technology*. Die einzelne Angabe der Hauptkategorie *Technology* ohne *Podcasting* ist in diesem Falle nicht nötig. 
+Details zu den Kategorien finden sich [hier](https://help.apple.com/itc/podcasts_connect/#/itc9267a2f12).
+
+Es ist nicht nötig (und erlaubt!) das "&" als `&amp;` zu kodieren!
+
+
+
+#### Soziale Netzwerke
+
+**twitter:**
+
+Nur das Twitter-Handle angeben, nicht den vollen Pfad zu Twitter, ohne @.
+
+**Mastodon:**
+
+Wenn Du auch bei Mastodon zu finden bist, dann gebe hier die komplette URL an.
+
+**Facebook:**
+
+Niemand mag so komisch aussehende blaue und Ajax verseuchte Netzwerke. Vielleicht magst Du es doch?
+Dann gebe einfach deine Seite oder das Handel dafür ein:
+
+Bsp.: vorname.nachname
+
+**github:**
+
+Hack Hack, Du weist schon. Wenn Du willst, dann gebe einfach deinen Username an :D
+
+**itunes:**
+
+Ist der Podcast bereits bei iTunes erreichbar, steht hier der komplette Link zur iTunes-Seite.
+Den findest Du irgendwo auf genau dieser... frag mich nicht!
+
+**itunesblock:**
+
+Möchtest Du iTunes blockieren? Weil Du gerade am Feed rumspielst? Oder weil iTunes doof ist? Dann schalte das hier auf `on` und Ruhe ist.
+
+
+
+#### Einstellungen des firtz
+
+**mediabaseurl:**
+
+Gibst Du dann an, wenn Du allen Mediendateien einen festen URL voranstellen möchtest. Das macht im Grunde nur Sinn, wenn die Dateien anhand des Namens der .epi-Datei erkannt und gefunden werden sollen. Das wiederum benötigt dann auch den:
+
+**mediabasepath:**
+
+Das ist der Ordner, in dem sich die Mediendateien befinden. Das ist nur sinnvoll, wenn Du in den .epi-Dateien nicht explizit auf die Mediendaten hinweist, sondern anhand des Dateinamens (==slug) diese finden lassen möchtest.
+
+**redirect:**
+
+Es kann natürlich vorkommen, dass Du den Feed umziehen musst. Anderes System, andere Domain, was auch immer. Um Deine Abonnenten nicht mit einem toten (alten) Feed alleine zu lassen, erzählst Du dem firtz, wo denn der neue Feed zu finden ist. Der führt dann ein redirect (301) aus, was im Allgemeinen auch diverse Dienste wie z.B. iTunes auf den neuen Feed führen sollte.
+
+
+
+
+#### Einstellungen Feed
+
+**rfc5005:**
 
 Kein Mensch kennt den rfc5005. Aber Du solltest ihn mit `on` einschalten, wenn Du absehen kannst, dass Dein Podcast viele Folgen bekommt. Der Sinn dahinter ist, im Feed nicht mehr alle Folgen zu haben, aber eine Verlinkung zu eine Feed mit älteren Folgen. Leider unterstützen viele Podcatcher dieses Feature nicht. Habe dennoch Mut!
 
-**baseurl**
+**baseurl:**
 
 Dieses Attribut benötigst Du nur, wenn Du in einer Installation des firtz mehrere Podcasts unter unterschiedlichen Domains veröffentlichen möchtest. Wenn dieser eine firtz dann mit einer bestimmten Domain angesprochen wird, muss er ja wissen, wo es langgeht. Bitte gib hier den vollen URL mit Schema (also http://) an.
 
-**feedalias**
+**feedalias:**
 
 `format feedname oldfeed`
 
@@ -144,23 +264,48 @@ Wenn man z.B. von Wordpress kommt und der alte MP3-Feed nach *http://supicast.de
 
 ein. Es gibt dann einen 301er redirect und alles bleibt "beim alten". Entsprechend gut programmierte Podcatcher werden die neue Adresse dann übernehmen.
 
-**articles-per-page**
+
+
+#### Einstellungen für Auphonic
+
+**auphonic-path:**
+
+Ich erkläre den auphonic-Workflow genauer in der Gesamtdokumentation. Hier sei nur erwähnt, dass unter auphonic-path der Pfad auf Deinem Server gemeint ist, unter dem die .json-Dateien gefunden werden.
+
+**auphonic-glob:**
+
+Wenn im auphonic-path die jsons mehrere Podcasts liegen, kannst Du mit diesem Pattern die für diesen Podcast nötigen jsons selektieren. Wenn die z.B. fasel00X.json heißen, die eines anderen Podcasts bla00X.json, gibst Du hier `fasel*.json` an.
+
+**auphonic-mode:**
+
+full, exclusive, episode oder off. Genauere Infos in der vollen Dokumentation.
+
+
+#### Einstellungen des Themes
+
+**articles-per-page:**
 
 Dieses Attribut beschränkt die Anzahl der Episoden auf der Webseite(!). Standard sind 3 Folgen.
 
-**template**
+**template:**
 
 Wenn Du zusätzlich zum Standardtemplate ein weiteres, ein Child-Theme nutzen möchstest, musst Du dieses hier anmelden. Bitte gib nur den Namen des Ordners an, nicht den vollen Pfad.
 
-**templatevars**
+**templatevars:**
 
-Je nach Template kann es Variablen geben, die die Ausgabe und das Verhalten des Templates steuern. Diese werden, entgegen der üblichen Sitte mit einer einfachen Notation nach
+Je nach Template kann es Variablen geben, die die Ausgabe und das Verhalten des Templates steuern.
+Diese werden, entgegen der üblichen Sitte mit einer einfachen Notation nach:
+`key value` angegeben.
 
-`key value`
+Für die Variablen des QuorX 3 Templates, schaue bitte in die entsprechende Dokumentation.
 
-angegeben. Für die Variablen des quorx-Templates schaue bitte in die entsprechende Dokumentation.
 
-#Attribute in der Episode
+
+
+
+
+
+# Attribute in der Episode
 
 **title**
 
@@ -206,28 +351,3 @@ Vielleicht passiert es einmal, dass Du einen Artikel auf der Webseite haben möc
 
 tbw (to be written)
 
-#Die Formate
-
-Hier folgt eine Liste der unterstützten Formate. Unterstützt heißt nun nicht, dass im Player auf der Webseite alle diese Formate angezeigt oder abgespielt werden können. Das heißt an der Stelle nur, dass der firtz weiß, dass es sich bei diesem Format um eines handelt, das einen Feed erzeugen kann. Die Formate sind auch die slugs für alle Angaben z.B. im Feed.
-
-Aber auch in den URLs werden Dir diese Slugs jedes mal wieder begegnen. In Klammern stelle ich sicherheitshalber dahinter, ob es sich um Audio oder Video handelt. Ein paar Formate sind beides nicht...
-
-* mp3 (audio)
-* mpg (video)
-* m4a (audio)
-* m4v (video)
-* oga (audio)
-* ogg (audio)
-* ogv (video)
-* webma (audio)
-* webm (video)
-* flac (audio)
-* opus (audio)
-* mka (audio)
-* mkv (video)
-* pdf
-* epub (ebook)
-* mobi (ebook)
-* png
-* jpg
-* torrent (und nochmal: bitte nicht mit der bitlove-Option verwechseln!)
