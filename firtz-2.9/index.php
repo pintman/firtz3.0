@@ -42,6 +42,7 @@ $main->set('LOCALES', 'src/dict/');
 $main->set('rfc5005', '');
 $main->set('audio', '');
 $main->set('search', '');
+$main->set("month", date("m"));
 
 if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "") $main->set('scheme', 'https'); else $main->set('scheme', 'http');
 
