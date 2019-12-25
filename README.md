@@ -131,7 +131,7 @@ Einstellungen Ihr machen könnt, um Teile des Designs zu verändern.
 
 Hier also ein paar Beispiele.
 
-#### Breite des Themes (Box/Full)
+### Breite des Themes (Box/Full)
 
 **layout: box**
 
@@ -142,7 +142,7 @@ Hier also ein paar Beispiele.
 <img src="https://raw.githubusercontent.com/Firtz-Designs/firtz3.0/master/doc/img/screen2.png">
 
 
-#### Farbe des Themes
+### Farbe des Themes
 
 Ich habe euch schon einige Farbthemen als Beispiele beigelegt.
 Selbsterklärend, könnt Ihr so euer eigenes Farbschema entwerfen.
@@ -167,15 +167,14 @@ Viel Spaß dabei!
 -- Stand: 25.12.2019 by McCouman
 
 
-## Kontakt
+## Twitter Kontakte
 
-- [@firtz](https://twitter.com/the_firtz) (project)
-- [@eazy](https://twitter.com/eazyliving)
-- [@mccouman](https://twitter.com/mccouman)
+- Developer: [@eazy](https://twitter.com/eazyliving)
+- Developer: [@mccouman](https://twitter.com/mccouman)
 
 
 ## Links
 
-- [fatfree framework](https://github.com/bcosca/fatfree)
-- [QuorX III](https://github.com/Firtz-Designs/QuorX-III)
-- [Podlove Webplayer](https://github.com/gerritvanaaken/podlove-web-player)
+- Theme: [QuorX 3](https://github.com/Firtz-Designs/QuorX-III)
+- Framework: [fat free framework](https://github.com/bcosca/fatfree)
+- Componense: [Podlove Webplayer](https://github.com/gerritvanaaken/podlove-web-player)
