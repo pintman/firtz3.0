@@ -131,13 +131,40 @@ Einstellungen Ihr machen könnt, um Teile des Designs zu verändern.
 
 Hier also ein paar Beispiele.
 
-### Breite des Themes (Box/Full)
+#### Breite des Themes (Box/Full)
 
-box
+**layout: box**
 
-<img src="">
+<img src="https://raw.githubusercontent.com/Firtz-Designs/firtz3.0/master/doc/img/screen1.png">
 
--- McCouman, 2019
+**layout: full**
+
+<img src="https://raw.githubusercontent.com/Firtz-Designs/firtz3.0/master/doc/img/screen2.png">
+
+
+#### Farbe des Themes
+
+Ich habe euch schon einige Farbthemen als Beispiele beigelegt.
+Selbsterklärend, könnt Ihr so euer eigenes Farbschema entwerfen.
+
+<pre>
+color #31424b     (Player)
+light #81b55e     (Buttons und Icons)
+dark  #2c3b43     (Links & Hintergrund)
+</pre>
+
+<img src="https://raw.githubusercontent.com/Firtz-Designs/firtz3.0/master/doc/img/screen3.png">
+
+Bitte achte darauf: Es sind diese Farbangaben auch in der feed.cfg
+unter: `/feeds/<demo>/feed.cfg` möglich. Sind hier Angaben hinterlegt,
+dann gelten diese immer als gesetzt.
+
+Es gibt noch viele weitere Angaben die Du setzen kannst, um dem
+Quorx3 Theme einen eigenen Look zu verpassen.
+
+Viel Spaß dabei!
+
+-- Stand: 25.12.2019 by McCouman
 
 
 ## Kontakt
