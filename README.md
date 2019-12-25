@@ -123,6 +123,23 @@ Einzelne Episoden sind auch verlinkbar, indem an den Pfad der Slug der
 Episode (praktisch der Dateiname ohne Endung) angehangen wird:
 `http://tollerneuerpodcst.de/demo/show/001`.
 
+## Das Theme und Layout: QuorX 3
+
+QuorX ist einfach veränderbar. Du findest die Einstellungen unter:
+`/templates/default/template.cfg`. Ich habe Euch schon beschrieben, welche
+Einstellungen Ihr machen könnt, um Teile des Designs zu verändern.
+
+Hier also ein paar Beispiele.
+
+### Breite des Themes (Box/Full)
+
+box
+
+<img src="">
+
+-- McCouman, 2019
+
+
 ## Kontakt
 
 - [@firtz](https://twitter.com/the_firtz) (project)
