@@ -159,8 +159,8 @@ Bitte achte darauf: Es sind diese Farbangaben auch in der feed.cfg
 unter: `/feeds/<demo>/feed.cfg` möglich. Sind hier Angaben hinterlegt,
 dann gelten diese immer als gesetzt.
 
-Es gibt noch viele weitere Angaben die Du setzen kannst, um dem
-Quorx3 Theme einen eigenen Look zu verpassen.
+Es gibt noch viele weitere Angaben zu entdecken die Du setzen kannst,
+um dem Quorx3 Theme einen eigenen Look zu verpassen.
 
 Viel Spaß dabei!
 
