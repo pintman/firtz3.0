@@ -2,7 +2,7 @@
 #: Titel deiner Podcast Episode
 #:---------------------------------------------------------------------------------------------------
 title:
-FDC001: Titel der Episode
+DC001: Episodentitel
 
 #:---------------------------------------------------------------------------------------------------
 #: Datum der Veröffentlichung
@@ -10,7 +10,7 @@ FDC001: Titel der Episode
 #: YYYY-MM-DD HH:mm:ss
 #:---------------------------------------------------------------------------------------------------
 date:
-2020-01-01 00:00:00
+2015-01-02 20:00:00
 
 #:---------------------------------------------------------------------------------------------------
 #: Untertitel
@@ -50,7 +50,7 @@ keyword1, keyword2, keyword3
 #: Die Dauer gibst Du bitte mit "HH:mm:ss" an. Danke!
 #:---------------------------------------------------------------------------------------------------
 duration:
-01:02:03
+01:23:45
 
 
 #:---------------------------------------------------------------------------------------------------
@@ -60,10 +60,10 @@ duration:
 #: HH:mm:ss Titel <http://ein-link.tld> <http://ein-bild.tld/image.jpg>
 #:---------------------------------------------------------------------------------------------------
 chapters:
-00:00:01 Intro
-00:55:00 Ziemlich in der Mitte <http://hoersuppe.de>
-01:01:00 Kurz vor Ende <http://wikibyte.org>
-01:02:03 Die Kapitel hier sind wirklich nur zu Demozwecken da
+00:00:00 Intro <http://firtz.org/>
+00:09:12 Ziemlich in der Mitte <http://hoersuppe.de/>
+00:18:00 Kurz vor Ende <http://podlove.org/>
+00:18:22 Ja, die Kapitel hier sind wirklich nur zu Demozwecken da...
 
 
 #:---------------------------------------------------------------------------------------------------
@@ -71,7 +71,6 @@ chapters:
 #:---------------------------------------------------------------------------------------------------
 contributors:
 maxi maximusterfrau maxmustermann
-
 
 #:---------------------------------------------------------------------------------------------------
 #: Poster
@@ -96,6 +95,7 @@ From www.Pexels.com by icon0.com
 bannerURL:
 https://www.pexels.com/de-de/foto/aussicht-baume-draussen-felsen-719609/
 
+
 #:---------------------------------------------------------------------------------------------------
 #: Intro + Outro (Sound License)
 #:
@@ -104,11 +104,11 @@ https://www.pexels.com/de-de/foto/aussicht-baume-draussen-felsen-719609/
 #:---------------------------------------------------------------------------------------------------
 
 intro:
-Flower 1, McCouman, https://www.wikibyte.org, Copyright, http://c3ltax.de
+SoundName, John Dow, https://www.domain.tld, CC BY, https://creativecommons.org/licenses/by/3.0/de/
 
 
 outro:
-Flower 2, McCouman, https://www.wikibyte.org, CC by SA, https://creativecommons.org/licenses/by/3.0/de/
+SoundName, John Dow, https://www.domain.tld, CC BY, https://creativecommons.org/licenses/by/3.0/de/
 
 
 #:---------------------------------------------------------------------------------------------------

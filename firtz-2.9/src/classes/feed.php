@@ -251,7 +251,7 @@ class feed
     }
 
     /**
-     *
+     * Preload episodes
      */
     public function preloadEpisodes()
     {
@@ -496,7 +496,7 @@ class feed
     }
 
     /**
-     *
+     * Find episodes
      */
     public function findEpisodes()
     {
@@ -577,7 +577,7 @@ class feed
     }
 
     /**
-     *
+     * Set Open-Graph
      */
     public function setOpenGraph()
     {
@@ -711,7 +711,6 @@ class feed
      */
     public function renderHTML($ret = false, $pagename = "")
     {
-
         /* render standard html template */
         $main = $this->main;
         $main->set('feedattr', $this->attr);
@@ -734,8 +733,6 @@ class feed
         /*	render or return template
             return rendered data will be used in clone mode, which will be used for static site clones
         */
-
-
         if ($ret === false) {
             echo Template::instance()->render($this->htmltemplate);
         } else {
