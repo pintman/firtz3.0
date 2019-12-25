@@ -2,7 +2,7 @@
 #: Titel deiner Podcast Episode
 #:---------------------------------------------------------------------------------------------------
 title:
-FRC001: Alles und ohne nix
+FDC001: Titel der Episode
 
 #:---------------------------------------------------------------------------------------------------
 #: Datum der Veröffentlichung
@@ -10,7 +10,7 @@ FRC001: Alles und ohne nix
 #: YYYY-MM-DD HH:mm:ss
 #:---------------------------------------------------------------------------------------------------
 date:
-2015-01-02 20:00:00
+2020-01-01 00:00:00
 
 #:---------------------------------------------------------------------------------------------------
 #: Untertitel
@@ -50,7 +50,7 @@ keyword1, keyword2, keyword3
 #: Die Dauer gibst Du bitte mit "HH:mm:ss" an. Danke!
 #:---------------------------------------------------------------------------------------------------
 duration:
-01:23:45
+01:02:03
 
 
 #:---------------------------------------------------------------------------------------------------
@@ -60,10 +60,10 @@ duration:
 #: HH:mm:ss Titel <http://ein-link.tld> <http://ein-bild.tld/image.jpg>
 #:---------------------------------------------------------------------------------------------------
 chapters:
-00:00:00 Intro <http://firtz.org/>
-00:09:12 Ziemlich in der Mitte <http://hoersuppe.de/>
-00:18:00 Kurz vor Ende <http://podlove.org/>
-00:18:22 Ja, die Kapitel hier sind wirklich nur zu Demozwecken da...
+00:00:01 Intro
+00:55:00 Ziemlich in der Mitte <http://hoersuppe.de>
+01:01:00 Kurz vor Ende <http://wikibyte.org>
+01:02:03 Die Kapitel hier sind wirklich nur zu Demozwecken da
 
 
 #:---------------------------------------------------------------------------------------------------

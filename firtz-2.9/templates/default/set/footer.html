@@ -18,10 +18,65 @@
             <div class="uk-width-expand@s">
                 <div class="uk-margin uk-text-right@s uk-text-center uk-scrollspy-inview">
                     <small>
-                        <a href="http://firtz.org">firtz</a> by <a href="http://eazy-living.de">Christian Bednarek</a>
-                        |
-                        <a href="">QuorX III</a> by <a href="http://michael.mccouman.de">Michael McCouman Jr.</a>
+                        <a href="#modal-example" uk-toggle>Powered by firtz</a>
+
+                        <set pagearr="{{ array() }}"/>
+                        <repeat group="{{ explode(',',@UI) }}" value="{{@tpath}}">
+                            <repeat group="{{glob(@tpath.'/pages/*',GLOB_ONLYDIR)}}" value="{{@dir}}">
+                                <check if="{{basename(@dir)}} == 'Rechtliches'">
+                                    <check if="{{!in_array(basename(@dir),@pagearr)}}">
+                                        <repeat group="{{glob(@tpath.'/pages/'.basename(@dir).'/*.html')}}"
+                                                value="{{@template}}">
+                                            | <a href="{{@BASEURL}}{{@feedattr.slug}}/show/page/{{basename(@dir)}}/{{basename(@template,'.html')}}{{@exthtml}}">{{basename(@template,'.html')}}</a>
+                                        </repeat>
+                                        <set pagearr="{{array_merge(@pagearr,array(basename(@dir)))}}"/>
+                                    </check>
+                                </check>
+                            </repeat>
+                        </repeat>
                     </small>
+                    <div id="modal-example" uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <button class="uk-modal-close-default" type="button" uk-close></button>
+                            <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-body">
+                                        <img src="{{@BASEURL}}templates/favicon.png"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-card uk-card-body">
+                                        <b>firtz / RC 3.0</b>
+                                        <p>Wurde anfänglich durch <a href="http://eazy-living.de">Christian Bednarek</a>
+                                            2013 entwicklet und ins Leben gerufen. 2016 übernahm
+                                            <a href="http://mc.wikibyte.org">Michael McCouman Jr.</a> die
+                                            Weiterentwicklung.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="uk-grid-small uk-child-width-expand@s uk-text-center uk-margin-remove-top" uk-grid>
+                                <div>
+                                    <div class="uk-card uk-card-body">
+                                        <b>QuorX 3</b>
+                                        <p>Das Design des firtz heißt QuorX und wurde 2013 von
+                                            <a href="http://mc.wikibyte.org">Michael McCouman Jr.</a> entwicklet.
+                                           Es ist nun in der neuen Version in der 3. Version erschienen.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-body">
+                                        <img src="{{@BASEURL}}templates/favicon.png"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
