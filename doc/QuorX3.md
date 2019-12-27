@@ -1,5 +1,7 @@
 # QuorX 3 Documentation
 
+<img src="https://raw.githubusercontent.com/Firtz-Designs/firtz3.0/master/firtz-2.9/templates/default/qx3/qx3.png"/>
+
 ### Version 3
 QuorX3 befindet sich als "Standard Theme" im firtz und ist dort vorinstalliert. Anfänglich war QuorX als Theme für einen monokromatischen Style, von Michael McCouman Jr. entwicklet. Mit QuorX I wurde es in firtz integriert und stand für alle NutzerInnen bei der Gundinstallation es firtz zur Verfügung.
 
